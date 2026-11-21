@@ -1,0 +1,30 @@
+{
+  "id": "WU-EXAMPLE-001",
+  "project_id": "PROJECT-EXAMPLE",
+  "title": "Document an API contract",
+  "objective": "Produce an API contract draft",
+  "owner_role": "API Designer",
+  "status": "PLANNED",
+  "baseline_revision": "example-baseline",
+  "inputs": [
+    "project-brief.md"
+  ],
+  "dependencies": [],
+  "allowed_files": [
+    "docs/api-contract.md"
+  ],
+  "permissions": [
+    "read",
+    "write"
+  ],
+  "outputs": [
+    "docs/api-contract.md"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "description": "Endpoints and error model documented",
+      "status": "NOT_RUN"
+    }
+  ]
+}

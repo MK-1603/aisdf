@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.dev/schemas/checkpoint.schema.json",
+  "title": "Checkpoint",
+  "type": "object",
+  "required": [
+    "id",
+    "project_id",
+    "created_at",
+    "completed_work",
+    "next_action"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "work_unit_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "baseline_revision": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "commit": {
+      "type": "string"
+    },
+    "completed_work": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uncommitted_changes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commands_and_results": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "tests_and_results": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "open_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_action": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.dev/schemas/rule-check-result.schema.json",
+  "title": "Rule Check Result",
+  "type": "object",
+  "required": [
+    "rule_id",
+    "status",
+    "checked_at",
+    "scope"
+  ],
+  "properties": {
+    "rule_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "NOT_CHECKED",
+        "BLOCKED",
+        "WAIVED"
+      ]
+    },
+    "checked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "finding": {
+      "type": "string"
+    },
+    "waiver": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "approved_by": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

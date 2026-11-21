@@ -1,0 +1,25 @@
+{
+  "project_id": "PROJECT-EXAMPLE",
+  "task_id": "WU-EXAMPLE-001",
+  "status": "PARTIAL",
+  "objective": "Draft API contract",
+  "baseline_revision": "example-baseline",
+  "changed_artifacts": [
+    "docs/api-contract.md"
+  ],
+  "acceptance_results": [
+    {
+      "criterion_id": "AC-1",
+      "status": "NOT_RUN",
+      "evidence": []
+    }
+  ],
+  "commands_and_checks": [],
+  "approvals": [],
+  "limitations": [
+    "Example fixture only; no execution evidence."
+  ],
+  "residual_risks": [],
+  "deployment_state": "NOT_DEPLOYED",
+  "next_action": "Review contract"
+}

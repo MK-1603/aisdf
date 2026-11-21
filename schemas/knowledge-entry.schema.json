@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.dev/schemas/knowledge-entry.schema.json",
+  "title": "Knowledge Entry",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "domain",
+    "status",
+    "content",
+    "source_evidence"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "CURRENT",
+        "REVIEW_DUE",
+        "STALE",
+        "SUPERSEDED",
+        "DISPUTED",
+        "UNVERIFIED"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "source_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "verified_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "review_due_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

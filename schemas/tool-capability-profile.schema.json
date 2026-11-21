@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.dev/schemas/tool-capability-profile.schema.json",
+  "title": "Tool Capability Profile",
+  "type": "object",
+  "required": [
+    "tool_id",
+    "product",
+    "version",
+    "status",
+    "verified_at",
+    "capabilities"
+  ],
+  "properties": {
+    "tool_id": {
+      "type": "string"
+    },
+    "product": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "plan": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "environment": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "VERIFIED",
+        "PARTIAL",
+        "EXPERIMENTAL",
+        "NOT_VERIFIED",
+        "DEPRECATED"
+      ]
+    },
+    "verified_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "status"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "review_due_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+checkpoint:
+  id: "CP-0001"
+  project_id: "PROJECT-ID"
+  work_unit_id: "WU-0001"
+  created_at: ""
+  baseline_revision: ""
+  branch: ""
+  commit: ""
+  completed_work: []
+  uncommitted_changes: []
+  commands_and_results: []
+  tests_and_results: []
+  open_issues: []
+  assumptions: []
+  risks: []
+  approvals: []
+  next_action: ""
+  stop_conditions: []

@@ -1,0 +1,22 @@
+project:
+  id: "PROJECT-ID"
+  name: "Project name"
+  mode: "DISCOVER | BUILD | XRAY_IMPROVE"
+  owner: ""
+  status: "DISCOVERY"
+  baseline_revision: ""
+  mission: ""
+  success_metrics: []
+  scope_in: []
+  scope_out: []
+  constraints: []
+  stakeholders: []
+  approved_decisions: []
+  assumptions: []
+  unknowns: []
+  risks: []
+  data_classification: "UNCLASSIFIED | INTERNAL | CONFIDENTIAL | RESTRICTED"
+  authorized_tools: []
+  prohibited_actions: ["production_deploy_without_approval", "secret_disclosure"]
+  approval_authority: ""
+  review_date: null

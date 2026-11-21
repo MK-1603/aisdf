@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.dev/schemas/source-evidence.schema.json",
+  "title": "Source Evidence",
+  "type": "object",
+  "required": [
+    "id",
+    "evidence_type",
+    "source",
+    "captured_at",
+    "verification_status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "evidence_type": {
+      "enum": [
+        "PRIMARY_SOURCE",
+        "EXECUTION_LOG",
+        "TEST_RESULT",
+        "REVIEW_RECORD",
+        "OBSERVATION",
+        "SECONDARY_SOURCE",
+        "USER_ASSERTION"
+      ]
+    },
+    "source": {
+      "type": "string"
+    },
+    "source_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verified_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verification_status": {
+      "enum": [
+        "VERIFIED",
+        "PARTIAL",
+        "UNVERIFIED",
+        "DISPUTED"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

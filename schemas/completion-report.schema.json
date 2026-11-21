@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.dev/schemas/completion-report.schema.json",
+  "title": "Completion Report",
+  "type": "object",
+  "required": [
+    "project_id",
+    "task_id",
+    "status",
+    "objective",
+    "acceptance_results",
+    "limitations"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "COMPLETE",
+        "PARTIAL",
+        "FAILED",
+        "BLOCKED"
+      ]
+    },
+    "objective": {
+      "type": "string"
+    },
+    "baseline_revision": {
+      "type": "string"
+    },
+    "changed_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptance_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion_id",
+          "status"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "NOT_RUN",
+              "BLOCKED",
+              "NOT_APPLICABLE",
+              "WAIVED"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "commands_and_checks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "residual_risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "deployment_state": {
+      "type": "string"
+    },
+    "next_action": {
+      "type": "string"
+    }
+  }
+}

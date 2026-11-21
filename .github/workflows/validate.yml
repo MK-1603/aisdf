@@ -1,0 +1,20 @@
+name: Validate AISDF repository
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  repository-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation dependency
+        run: pip install -r requirements-dev.txt
+      - name: Validate repository and schema fixtures
+        run: python tools/validate_repository.py
+
+      - name: Run repository tests
+        run: python -m pytest -q

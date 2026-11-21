@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.dev/schemas/alternative-evaluation.schema.json",
+  "title": "Alternative Evaluation",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "options",
+    "selected_option",
+    "rationale"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string"
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "options": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "strengths",
+          "risks"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "strengths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "score": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "selected_option": {
+      "type": "string"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "revisit_trigger": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+work_unit:
+  id: "WU-0001"
+  project_id: "PROJECT-ID"
+  title: ""
+  objective: ""
+  owner_role: ""
+  status: "PLANNED"
+  baseline_revision: ""
+  inputs: []
+  source_documents: []
+  dependencies: []
+  allowed_files: []
+  prohibited_files: []
+  allowed_tools: []
+  permissions: ["read"]
+  outputs: []
+  acceptance_criteria: []
+  risks: []
+  approvals_required: []
+  deadline: null
+  evidence: []
+  next_action: ""
