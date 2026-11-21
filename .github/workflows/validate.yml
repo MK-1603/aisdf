@@ -1,19 +1,44 @@
 name: AISDF Validation
+
 on:
   push:
   pull_request:
   workflow_dispatch:
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Repository validation
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install development dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+
+      - name: Verify repository root files
+        run: |
+          pwd
+          ls -la
+          test -f PROJECT.md
+          test -f README.md
+          test -f AGENTS.md
+          test -f LICENSE
+
+      - name: Validate repository
         run: python tools/validate_repository.py
-      - name: Unit and integration tests
+
+      - name: Run automated tests
         run: python -m unittest discover -s tests -v
+
       - name: Workforce CLI smoke test
         run: python runtime/aisdf_runtime/workforce.py workers
