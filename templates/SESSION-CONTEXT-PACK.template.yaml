@@ -1,0 +1,32 @@
+context_pack_id: "CTX-0001"
+project_id: ""
+workspace_id: ""
+created_at: ""
+created_by: ""
+task:
+  id: ""
+  objective: ""
+  status: ""
+canonical_state_ref: ""
+approved_constraints: []
+relevant_memories:
+  - memory_id: ""
+    reason_retrieved: ""
+    source_ref: ""
+    status: ""
+    verified_at: null
+current_progress:
+  completed: []
+  in_progress: []
+  blocked: []
+changed_artifacts: []
+commands_and_tests:
+  - command: ""
+    result: "NOT_RUN" # PASS | FAIL | NOT_RUN | BLOCKED
+    evidence_ref: ""
+decisions: []
+risks_and_unknowns: []
+next_action: ""
+omitted_material:
+  reason: "bounded_context"
+  references: []

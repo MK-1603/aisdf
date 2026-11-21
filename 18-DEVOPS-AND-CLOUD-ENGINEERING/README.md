@@ -1,7 +1,7 @@
-# 18 — DevOps and Cloud Engineering
+# 18 — Reliability And Observability
 
 ## Purpose
-This domain defines the canonical AISDF guidance for devops and cloud engineering. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for reliability and observability. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.
@@ -16,3 +16,7 @@ Use authoritative, versioned sources for claims that can change. Separate stable
 
 ## Related assets
 See `../engines/` for capability contracts, `../workflows/` for lifecycle procedures, `../schemas/` for data contracts and `../00-GOVERNANCE/` for rules.
+
+## Extended engineering coverage
+
+See `../../MASTER-ENGINEERING-COVERAGE/CATALOGUE.md` for CI/CD, Docker, Kubernetes, infrastructure as code, configuration management, secrets management and deployment strategies, each with a dedicated specification and test plan.

@@ -11,11 +11,3 @@
 7. Record a decision: PROCEED, INVESTIGATE, PIVOT, DEFER or STOP.
 
 Do not invent market size, customer demand or validation evidence. Venture validation is optional where the task is not a venture/product opportunity.
-
-**Use when:** the user has an idea, rough problem statement, notes or transcript. Preserve the original input and research the problem space when current external evidence matters.
-
-## Outputs
-Problem brief, stakeholder map, evidence register, assumptions/open questions, risk/premortem, success/kill criteria and decision record.
-
-## Exit gate
-Problem, target users, desired outcome, critical assumptions and next decision are explicit. Do not force commercial validation on academic/internal projects; record why it is not applicable.

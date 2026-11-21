@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AISDF Review Finding",
+  "type": "object",
+  "required": [
+    "id",
+    "spec_id",
+    "title",
+    "description",
+    "severity",
+    "status",
+    "owner",
+    "created_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^FIND-[A-Z0-9-]+$"
+    },
+    "spec_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "enum": [
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "INFO"
+      ]
+    },
+    "status": {
+      "enum": [
+        "OPEN",
+        "IN_PROGRESS",
+        "RESOLVED"
+      ]
+    },
+    "owner": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "disposition": {
+      "enum": [
+        "FIXED",
+        "ACCEPTED_RISK",
+        "WONT_FIX",
+        "DUPLICATE",
+        "NOT_A_BUG",
+        null
+      ]
+    },
+    "resolution_evidence": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "re_review_status": {
+      "enum": [
+        "PENDING",
+        "PASSED",
+        "FAILED",
+        "NOT_REQUIRED_WITH_RATIONALE"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

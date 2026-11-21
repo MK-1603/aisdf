@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re, sys
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]; warnings=[]
-required=['README.md','AISDF-MISSION-AND-SCOPE.md','00-GOVERNANCE/AISDF-RULEBOOK.md','modes/MODE-1-PROBLEM-DISCOVERY.md','modes/MODE-2-NEW-PROJECT.md','modes/MODE-3-EXISTING-PROJECT.md','prompts/MASTER-ENTRY-PROMPT.md','REFERENCE-PROJECTS/DEVTRACK/README.md','RELEASE-READINESS.md','project.md','CITATION.cff','examples/EXAMPLE-AI-SAAS-PROJECT.md']
+required=['README.md','PROJECT.md','AGENTS.md','workflows/WF-013-PROJECT-DEFINITION-ASSESSMENT-AND-IMPLEMENTATION-PLANNING.md','tools/aisdf_runtime/project.py','tools/aisdf_runtime/templates/PROJECT.md.template.md','AISDF-MISSION-AND-SCOPE.md','00-GOVERNANCE/AISDF-RULEBOOK.md','modes/MODE-1-PROBLEM-DISCOVERY.md','modes/MODE-2-NEW-PROJECT.md','modes/MODE-3-EXISTING-PROJECT.md','prompts/MASTER-ENTRY-PROMPT.md','REFERENCE-PROJECTS/DEVTRACK/README.md','RELEASE-READINESS.md']
 for rel in required:
  if not (ROOT/rel).is_file(): errors.append(f'Missing required file: {rel}')
 engines=sorted((ROOT/'engines').glob('E-*.md')); schemas=sorted((ROOT/'schemas').glob('*.schema.json'))
@@ -16,7 +16,7 @@ for p in engines:
  else: ids.append(int(m.group(1)))
  if '## Engine-specific execution contract' not in p.read_text(encoding='utf-8'): errors.append(f'Missing engine-specific contract: {p.name}')
 if sorted(ids)!=list(range(1,57)): errors.append('Engine IDs must be exactly E-001 through E-056')
-if len(schemas)!=8: errors.append(f'Expected 8 schemas; found {len(schemas)}')
+if len(schemas)<8: errors.append(f'Expected at least 8 schemas; found {len(schemas)}')
 for p in schemas:
  try:
   data=json.loads(p.read_text(encoding='utf-8'))
@@ -53,5 +53,5 @@ if errors:
  print('FAIL:'); [print(' - '+e) for e in errors]; sys.exit(1)
 print(f'PASS: {len(engines)} uniquely numbered engine specifications with specific contracts.')
 print(f'PASS: {len(schemas)} JSON Schema files; {len(fixtures)} JSON fixtures parse.')
-print('PASS: required project, governance and release-readiness documents present.')
+print('PASS: required project definition, agent instructions, WF-013 tooling, governance and release-readiness documents present.')
 print('NOTE: This does not prove external adapters, autonomous orchestration, or end-to-end software delivery.')

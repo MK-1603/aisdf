@@ -1,7 +1,7 @@
-# 10 — AI and Model Engineering
+# 10 — Orchestration And Context
 
 ## Purpose
-This domain defines the canonical AISDF guidance for ai and model engineering. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for orchestration and context. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

@@ -1,7 +1,7 @@
-# 30 — Agent Rules and Verification
+# 30 — Reference And Glossary
 
 ## Purpose
-This domain defines the canonical AISDF guidance for agent rules and verification. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for reference and glossary. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

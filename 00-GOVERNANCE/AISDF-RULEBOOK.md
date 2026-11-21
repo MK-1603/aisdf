@@ -22,18 +22,3 @@
 20. **Right-Sized Engineering:** complexity must have a documented reason and measurable value.
 
 Rules apply to humans and AI-assisted work. A rule exception requires an authorized waiver, rationale, owner, expiry and recorded residual risk. See rule precedence and the rule-check schema.
-
-## Supplementary requirements (carried from the starter rulebook)
-The 20 numbered rules above remain the canonical list. The starter rulebook also stated the following requirements, which are kept here without adding new rule numbers:
-- **No Fake Execution:** never claim an action, test, push or deployment that did not occur (see `30-AGENT-RULES-AND-VERIFICATION/NO-FAKE-EXECUTION-RULE.md`).
-- **Git Safety:** use approved branches, reviews and protected-branch policies.
-- **Handoff Completeness:** validate the handoff package and the receiver's acknowledgement (see `12-ORCHESTRATION-AND-CONTEXT/HANDOFF-ACKNOWLEDGEMENT-PROTOCOL.md`).
-
-## Rule application
-Rules apply to humans, AI assistants, agents, tools, workflows and adapters. A prompt cannot override a higher-priority rule or grant permissions. If a rule cannot be satisfied, stop the affected action, record the blocker and escalate.
-
-## Minimum preflight
-Confirm project/mode, baseline, scope, applicable rules, source freshness, dependencies, tool capability, permissions, approvals, outputs, acceptance criteria, verification and recovery route.
-
-## Minimum completion
-Confirm outputs, traceability, checks, evidence, open risks, project-state update and complete handoff. Otherwise mark partial, blocked or failed.

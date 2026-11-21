@@ -1,7 +1,7 @@
-# 19 — Deployment and Operations
+# 19 — Distributed Systems
 
 ## Purpose
-This domain defines the canonical AISDF guidance for deployment and operations. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for distributed systems. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

@@ -1,7 +1,7 @@
-# 16 — API and Integration Engineering
+# 16 — Devops And Cloud
 
 ## Purpose
-This domain defines the canonical AISDF guidance for api and integration engineering. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for devops and cloud. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.
@@ -16,3 +16,7 @@ Use authoritative, versioned sources for claims that can change. Separate stable
 
 ## Related assets
 See `../engines/` for capability contracts, `../workflows/` for lifecycle procedures, `../schemas/` for data contracts and `../00-GOVERNANCE/` for rules.
+
+## Extended engineering coverage
+
+See `../../MASTER-ENGINEERING-COVERAGE/CATALOGUE.md` for API gateway, reverse proxy, authentication/authorization, API security, versioning, REST/GraphQL, WebSockets, rate limiting and idempotency.

@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AISDF Security Tool Registry",
+  "version": "1.0.0",
+  "researched_on": "2026-11-21",
+  "status": "candidate_catalogue_not_certified_adapters",
+  "tools": [
+    {
+      "id": "SEC-001",
+      "name": "Strix",
+      "repository": "https://github.com/usestrix/strix",
+      "category": [
+        "DAST",
+        "AI_PENETRATION_TESTING"
+      ],
+      "purpose": "AI-assisted dynamic application penetration testing and proof-oriented findings",
+      "authorized_scope_required": true,
+      "active_testing": true,
+      "notes": [
+        "Use only on explicitly authorized targets",
+        "Docker and supported LLM provider credentials may be required"
+      ]
+    },
+    {
+      "id": "SEC-002",
+      "name": "Cloudflare Security Audit Skill",
+      "repository": "https://github.com/cloudflare/security-audit-skill",
+      "category": [
+        "AI_CODE_AUDIT",
+        "SAST_ASSISTED"
+      ],
+      "purpose": "Coverage-led multi-phase audit with independent candidate validation and structured reports",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "Target-controlled execution requires OS-enforced sandboxing",
+        "Without required sandbox controls, keep leads needs_validation"
+      ]
+    },
+    {
+      "id": "SEC-003",
+      "name": "Trivy",
+      "repository": "https://github.com/aquasecurity/trivy",
+      "category": [
+        "SCA",
+        "CONTAINER",
+        "IAC",
+        "SECRETS",
+        "LICENSES"
+      ],
+      "purpose": "Scan filesystem, repository, containers, VM and Kubernetes targets for vulnerabilities, misconfigurations, secrets and licenses",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "Select scanner types and target explicitly"
+      ]
+    },
+    {
+      "id": "SEC-004",
+      "name": "Nuclei",
+      "repository": "https://github.com/projectdiscovery/nuclei",
+      "category": [
+        "DAST",
+        "NETWORK_VULNERABILITY_SCANNING"
+      ],
+      "purpose": "Template-driven vulnerability checks across supported protocols",
+      "authorized_scope_required": true,
+      "active_testing": true,
+      "notes": [
+        "Use allowlisted targets, reviewed templates and safe rate limits"
+      ]
+    },
+    {
+      "id": "SEC-005",
+      "name": "TruffleHog",
+      "repository": "https://github.com/trufflesecurity/trufflehog",
+      "category": [
+        "SECRET_DETECTION"
+      ],
+      "purpose": "Discover, classify and for supported types validate leaked credentials",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "Credential validation requires explicit authorization",
+        "Redact discovered secret values"
+      ]
+    },
+    {
+      "id": "SEC-006",
+      "name": "NVIDIA SkillSpector",
+      "repository": "https://github.com/NVIDIA/skillspector",
+      "category": [
+        "AGENT_SKILL_SUPPLY_CHAIN"
+      ],
+      "purpose": "Analyze agent skills for malicious patterns and vulnerabilities",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "Run before installing third-party agent skills"
+      ]
+    },
+    {
+      "id": "SEC-007",
+      "name": "Semgrep",
+      "repository": "https://github.com/semgrep/semgrep",
+      "category": [
+        "SAST",
+        "CODE_POLICY"
+      ],
+      "purpose": "Static code analysis and security rule enforcement",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "Community Edition has documented analysis limitations; record edition and coverage"
+      ]
+    },
+    {
+      "id": "SEC-008",
+      "name": "OpenAI Codex Security",
+      "repository": "https://github.com/openai/codex-security",
+      "category": [
+        "AI_CODE_AUDIT",
+        "VULNERABILITY_REMEDIATION"
+      ],
+      "purpose": "AI-assisted repository scans, finding validation, patch proposals and fix verification",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "Verify account access, authentication, cost and supported workflows"
+      ]
+    },
+    {
+      "id": "SEC-009",
+      "name": "ClamAV",
+      "repository": "https://github.com/Cisco-Talos/clamav",
+      "category": [
+        "MALWARE_SCANNING"
+      ],
+      "purpose": "Detect malware in applicable files and artifacts",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "Not a source-code vulnerability scanner",
+        "Keep signatures current and isolate untrusted samples"
+      ]
+    },
+    {
+      "id": "SEC-010",
+      "name": "Claude Code Security Review",
+      "repository": "https://github.com/anthropics/claude-code-security-review",
+      "category": [
+        "AI_PR_SECURITY_REVIEW"
+      ],
+      "purpose": "Diff-aware AI security review of GitHub pull requests",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "README warns not hardened against prompt injection",
+        "Restrict to trusted PRs and require approval for external contributions"
+      ]
+    },
+    {
+      "id": "SEC-011",
+      "name": "BLA \u2014 Blind LLM Agents",
+      "repository": "https://github.com/qybaihe/bla",
+      "category": [
+        "RELEASE_ARTIFACT_HARDENING"
+      ],
+      "purpose": "Defensive anti-reverse-engineering hardening of owned release artifacts",
+      "authorized_scope_required": true,
+      "active_testing": false,
+      "notes": [
+        "Not a general vulnerability scanner",
+        "Verify runtime equivalence and test output before release"
+      ]
+    },
+    {
+      "id": "SEC-012",
+      "name": "Microsoft PyRIT",
+      "repository": "https://github.com/microsoft/pyrit",
+      "category": [
+        "AI_RED_TEAM"
+      ],
+      "purpose": "Red-team generative-AI models and applications using repeatable/adaptive assessments",
+      "authorized_scope_required": true,
+      "active_testing": true,
+      "notes": [
+        "Use owned test endpoints, synthetic data, bounded budgets and human review"
+      ]
+    }
+  ]
+}

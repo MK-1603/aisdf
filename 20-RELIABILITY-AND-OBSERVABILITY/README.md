@@ -1,7 +1,7 @@
-# 20 — Reliability and Observability
+# 20 — Cost And Capacity
 
 ## Purpose
-This domain defines the canonical AISDF guidance for reliability and observability. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for cost and capacity. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.
@@ -16,3 +16,7 @@ Use authoritative, versioned sources for claims that can change. Separate stable
 
 ## Related assets
 See `../engines/` for capability contracts, `../workflows/` for lifecycle procedures, `../schemas/` for data contracts and `../00-GOVERNANCE/` for rules.
+
+## Extended engineering coverage
+
+See `../../MASTER-ENGINEERING-COVERAGE/CATALOGUE.md` for circuit breakers, timeouts/retries, bulkheads/backpressure, observability, logging, metrics, tracing, incident management, SLOs and disaster recovery.

@@ -1,7 +1,7 @@
-# 02 — Project Intelligence
+# 02 — Requirements And Product
 
 ## Purpose
-This domain defines the canonical AISDF guidance for project intelligence. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for requirements and product. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

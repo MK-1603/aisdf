@@ -1,7 +1,7 @@
-# 13 — Harness and Execution
+# 13 — Data Intelligence
 
 ## Purpose
-This domain defines the canonical AISDF guidance for harness and execution. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for data intelligence. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

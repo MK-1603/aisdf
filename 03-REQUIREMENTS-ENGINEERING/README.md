@@ -1,7 +1,7 @@
-# 03 — Requirements Engineering
+# 03 — Ux Ui And Experience
 
 ## Purpose
-This domain defines the canonical AISDF guidance for requirements engineering. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for ux ui and experience. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

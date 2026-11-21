@@ -1,25 +1,23 @@
-# Implementation Status — AISDF 3.3.0 consolidated build
+# Implementation Status — AISDF 3.8.1
 
 ## Present in this build
-- `project.md` downloadable project brief (with completeness checklist and check/update routine), a worked AI SaaS example plan, and a global `README.md` usage guide.
-- Governance policies, standards and checklists merged from 3.0.1 (status PROPOSED until approved).
-- 31 domain directories and core governance documents.
-- 56 engine specifications, each extended with engine-specific responsibility, input/output expectations, decision/safety conditions and test scenarios.
-- Three operating modes, four workflow specifications and prompt set.
-- Eight JSON Schema contracts and fixture examples.
-- Repository validator checking required artifacts, engine numbering/contracts, schema drafts, fixture JSON, mapped schema conformance (when dependency installed), directory README presence warnings and relative Markdown links.
-- Pytest checks and GitHub Actions workflow.
-- DevTrack reference-project specification and staged validation plan.
-- Release-readiness checklist and evidence-based maturity rubric.
+- Repository-root `README.md`, AISDF `PROJECT.md`, and agent operating instructions in `AGENTS.md`.
+- 31 engineering-domain directories and governance documents.
+- 56 engine specifications with responsibility, input/output expectations, safety conditions, evidence requirements and test scenarios.
+- Three operating modes and 13 workflow specifications (WF-001–WF-013).
+- JSON Schema contracts, fixtures, templates, prompts, registries, reference-project materials, and GitHub Actions validation.
+- WF-007–WF-012 standard-library artifact workflow CLI.
+- WF-013 project lifecycle helper: create a target `PROJECT.md` and `.aisdf/` workspace, preserve existing files, generate deterministic repository inventory, scaffold an implementation plan, compute an approval digest, and gate execution-prompt generation on explicit human approval.
+- Project assessment prompt and documentation describing how connected coding agents must inspect actual source, tests, and existing instruction files.
+- Packaged Claude Code, Codex, Cursor, and Antigravity adapter assets.
 
 ## Not completed / not proven
-- DevTrack application source code has not been built through AISDF.
-- No end-to-end reference project execution has been evidenced.
-- No external AI tool/IDE/API/MCP adapter is certified.
-- No hosted AISDF runtime or autonomous orchestration service exists.
-- No remote GitHub repository, remote CI run, release or production deployment was created by this build.
-- License, maintainers and monitored security disclosure contact require maintainer decisions.
-- The validator is a quality gate, not proof of software correctness, security certification or production readiness.
+- The project inventory helper does not perform semantic feature analysis; the connected AI agent must inspect source and tests and cite evidence.
+- No automatic ChatGPT/Claude API connection, agent spawning, genuine isolated reviewer orchestration, or autonomous implementation runtime is provided.
+- Host adapters have not been live-installed or certified against exact host versions/plans.
+- No end-to-end external target project has been implemented and production-verified using this release.
+- No remote GitHub repository, remote CI run, or production deployment was created by this build.
+- License, maintainers, and monitored security disclosure contact require maintainer decisions.
 
 ## Release status
-**Advanced specification and local-validation foundation. Not production-proven.**
+**Repository-ready documentation and local tooling release; project assessment and planning are supported, but semantic review and implementation remain host-agent and human-governed activities. Not production-proven.**

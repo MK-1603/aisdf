@@ -1,0 +1,14 @@
+---
+description: AISDF spec-driven engineering governance and workflows. Apply when evaluating concepts, drafting/reviewing specs, resolving findings, mapping a codebase, or checking spec drift.
+alwaysApply: false
+---
+
+# AISDF workflow rules
+
+- Read AISDF governance and the requested WF-007–WF-012 procedure before acting.
+- Use the portable `tools/aisdf.py` runtime and persist artifacts under `.aisdf/`.
+- Keep concept challenge, specification drafting, review, and implementation as separate gated stages.
+- Never claim independent review unless fresh context isolation is evidenced. If unavailable, report `NON_INDEPENDENT` or `BLOCKED`.
+- Do not modify application source before explicit human approval of the specification and exact file allowlist.
+- Preserve dissent and all review findings; resolutions require evidence.
+- Run tests and drift checks after implementation; report limitations honestly.

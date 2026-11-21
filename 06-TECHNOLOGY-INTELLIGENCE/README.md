@@ -1,7 +1,7 @@
-# 06 — Technology Intelligence
+# 06 — Architecture And Design
 
 ## Purpose
-This domain defines the canonical AISDF guidance for technology intelligence. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for architecture and design. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

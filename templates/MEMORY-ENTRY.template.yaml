@@ -1,0 +1,26 @@
+id: "MEM-0001"
+title: ""
+memory_type: "project_fact" # project_fact | decision | session_checkpoint | lesson | preference | knowledge_reference
+scope:
+  project_id: ""
+  workspace_id: ""
+  owner: ""
+statement: ""
+details: ""
+classification: "internal" # public | internal | confidential | restricted
+status: "UNVERIFIED" # CURRENT | REVIEW_DUE | STALE | SUPERSEDED | DISPUTED | UNVERIFIED
+confidence: 0.0
+source_refs:
+  - uri: ""
+    source_type: ""
+    revision_or_date: ""
+observed_at: ""
+recorded_at: ""
+verified_at: null
+review_due_at: null
+expires_at: null
+approved_by: null
+supersedes: []
+superseded_by: []
+related_records: []
+limitations: []

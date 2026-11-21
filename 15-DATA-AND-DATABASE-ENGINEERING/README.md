@@ -1,7 +1,7 @@
-# 15 — Data and Database Engineering
+# 15 — Testing And Quality
 
 ## Purpose
-This domain defines the canonical AISDF guidance for data and database engineering. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for testing and quality. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.
@@ -16,3 +16,7 @@ Use authoritative, versioned sources for claims that can change. Separate stable
 
 ## Related assets
 See `../engines/` for capability contracts, `../workflows/` for lifecycle procedures, `../schemas/` for data contracts and `../00-GOVERNANCE/` for rules.
+
+## Extended engineering coverage
+
+See `../../MASTER-ENGINEERING-COVERAGE/CATALOGUE.md` for replication, sharding/partitioning, connection pooling, distributed transactions, concurrency control, consistency models, CQRS, event sourcing and schema evolution.

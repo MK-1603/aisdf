@@ -1,7 +1,7 @@
-# 24 — Product Analytics and Support
+# 24 — Distribution And Extensions
 
 ## Purpose
-This domain defines the canonical AISDF guidance for product analytics and support. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for distribution and extensions. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

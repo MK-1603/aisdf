@@ -1,7 +1,7 @@
-# 26 — Distribution and Extensions
+# 26 — Templates And Examples
 
 ## Purpose
-This domain defines the canonical AISDF guidance for distribution and extensions. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for templates and examples. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

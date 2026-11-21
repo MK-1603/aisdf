@@ -1,0 +1,20 @@
+{
+  "name": "AISDF",
+  "version": "3.8.2",
+  "description": "AI Software Development Framework",
+  "repository_layout": "repository-root",
+  "python_minimum": "3.10",
+  "workflow_runtime": "tools/aisdf_runtime/aisdf.py",
+  "provider_adapters": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "antigravity"
+  ],
+  "license_status": "pending-maintainer-decision",
+  "host_certification": "not-performed",
+  "project_lifecycle_cli": "tools/aisdf_runtime/project.py",
+  "included_methodologies": [
+    "MK Framework"
+  ]
+}

@@ -1,0 +1,6 @@
+---
+description: Load AISDF project source of truth and enforce approved scope for project work.
+alwaysApply: true
+---
+
+Before acting, read `AGENTS.md`, `PROJECT.md`, and the active approved plan in `.aisdf/plans/` when present. Treat PROJECT.md as product truth and AGENTS.md as operating rules. For assessment, remain read-only. Do not edit source until the human has approved the plan and exact file allowlist. Preserve existing Cursor rules and user changes. Run relevant checks and report actual evidence; never claim unrun tests.

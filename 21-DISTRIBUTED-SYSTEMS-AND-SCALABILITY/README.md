@@ -1,7 +1,7 @@
-# 21 — Distributed Systems and Scalability
+# 21 — Legal And Compliance
 
 ## Purpose
-This domain defines the canonical AISDF guidance for distributed systems and scalability. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for legal and compliance. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.
@@ -16,3 +16,7 @@ Use authoritative, versioned sources for claims that can change. Separate stable
 
 ## Related assets
 See `../engines/` for capability contracts, `../workflows/` for lifecycle procedures, `../schemas/` for data contracts and `../00-GOVERNANCE/` for rules.
+
+## Extended engineering coverage
+
+See `../../MASTER-ENGINEERING-COVERAGE/CATALOGUE.md` for the canonical topic catalogue, including traffic management, caching, messaging, consistency, resilience, replication, service discovery and distributed transactions. Apply only when justified by project requirements.

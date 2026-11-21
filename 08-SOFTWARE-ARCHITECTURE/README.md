@@ -1,7 +1,7 @@
-# 08 — Software Architecture
+# 08 — Ai And Model Intelligence
 
 ## Purpose
-This domain defines the canonical AISDF guidance for software architecture. It is a knowledge and policy area, not an executable service.
+This domain defines the canonical AISDF guidance for ai and model intelligence. It is a knowledge and policy area, not an executable service.
 
 ## Required coverage
 - Scope, terminology and non-goals.

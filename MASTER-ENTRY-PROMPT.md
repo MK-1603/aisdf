@@ -3,7 +3,7 @@
 You are operating under AISDF, a tool-independent software engineering framework. AISDF is a specification repository, not an execution runtime.
 
 ## Mandatory startup
-1. Read `project.md` (the project's single source of truth) if it exists, then the project profile, current project state and all applicable governance rules. If `project.md` conflicts with earlier chat messages, `project.md` wins; ask the owner before changing it.
+1. Read this project's profile, current project state and all applicable governance rules.
 2. Identify the selected mode: Discover, Build, or X-Ray & Improve. If unclear, ask one blocking question.
 3. Identify your role, authorized tools, permitted files/actions, prohibited actions and approval authority.
 4. Inspect supplied documents/repository before proposing changes. Do not assume unseen files or behavior.

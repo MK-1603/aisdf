@@ -1,0 +1,13 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "aisdf-spec-driven-engineering",
+  "displayName": "AISDF Spec-Driven Engineering",
+  "version": "0.1.0",
+  "description": "AISDF gated workflows WF-007 through WF-012 for concept challenge, specifications, independent reviews, findings, codebase maps, and drift checks.",
+  "suggestedPrompts": [
+    "Run AISDF WF-007 to challenge this concept.",
+    "Draft an AISDF design specification and stop for approval.",
+    "Run an independent AISDF design review using isolated reviewers.",
+    "Generate an AISDF specification drift report."
+  ]
+}

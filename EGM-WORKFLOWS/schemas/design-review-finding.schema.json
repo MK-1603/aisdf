@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.local/schemas/design-review-finding.schema.json",
+  "title": "AISDF Design Review Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "finding_id",
+    "title",
+    "severity",
+    "category",
+    "evidence",
+    "impact",
+    "recommendation",
+    "stage",
+    "reviewer",
+    "status"
+  ],
+  "properties": {
+    "finding_id": {
+      "type": "string",
+      "pattern": "^DR-[A-Z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "enum": [
+        "BLOCKER",
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "NOTE"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "reference"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "excerpt": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "affected_requirement": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "impact": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recommendation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage": {
+      "enum": [
+        "ZOOM_OUT_1",
+        "COMPREHENSION",
+        "DESIGN_CRITIQUE",
+        "ZOOM_OUT_2",
+        "IMPLEMENTATION_READINESS"
+      ]
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "status": {
+      "enum": [
+        "OPEN",
+        "ACCEPTED",
+        "REJECTED_WITH_RATIONALE",
+        "DEFERRED",
+        "DUPLICATE",
+        "RESOLVED",
+        "RETEST_REQUIRED"
+      ]
+    },
+    "disposition_rationale": {
+      "type": "string"
+    },
+    "resolution_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
