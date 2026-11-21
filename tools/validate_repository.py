@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re, sys
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]; warnings=[]
-required=['README.md','PROJECT.md','AGENTS.md','workflows/WF-013-PROJECT-DEFINITION-ASSESSMENT-AND-IMPLEMENTATION-PLANNING.md','tools/aisdf_runtime/project.py','tools/aisdf_runtime/templates/PROJECT.md.template.md','AISDF-MISSION-AND-SCOPE.md','00-GOVERNANCE/AISDF-RULEBOOK.md','modes/MODE-1-PROBLEM-DISCOVERY.md','modes/MODE-2-NEW-PROJECT.md','modes/MODE-3-EXISTING-PROJECT.md','prompts/MASTER-ENTRY-PROMPT.md','REFERENCE-PROJECTS/DEVTRACK/README.md','RELEASE-READINESS.md']
+required=['README.md','PROJECT.md','AGENTS.md','LICENSE','LICENSE-DECISION.md','templates/PROJECT.template.md','templates/AGENTS.template.md','workflows/WF-013-PROJECT-DEFINITION-ASSESSMENT-AND-IMPLEMENTATION-PLANNING.md','tools/aisdf_runtime/project.py','tools/aisdf_runtime/templates/PROJECT.md.template.md','AISDF-MISSION-AND-SCOPE.md','00-GOVERNANCE/AISDF-RULEBOOK.md','modes/MODE-1-PROBLEM-DISCOVERY.md','modes/MODE-2-NEW-PROJECT.md','modes/MODE-3-EXISTING-PROJECT.md','prompts/MASTER-ENTRY-PROMPT.md','REFERENCE-PROJECTS/DEVTRACK/README.md','RELEASE-READINESS.md','docs/project-lifecycle/PROJECT-AND-AGENT-FILES.md']
 for rel in required:
  if not (ROOT/rel).is_file(): errors.append(f'Missing required file: {rel}')
 engines=sorted((ROOT/'engines').glob('E-*.md')); schemas=sorted((ROOT/'schemas').glob('*.schema.json'))
@@ -53,5 +53,5 @@ if errors:
  print('FAIL:'); [print(' - '+e) for e in errors]; sys.exit(1)
 print(f'PASS: {len(engines)} uniquely numbered engine specifications with specific contracts.')
 print(f'PASS: {len(schemas)} JSON Schema files; {len(fixtures)} JSON fixtures parse.')
-print('PASS: required project definition, agent instructions, WF-013 tooling, governance and release-readiness documents present.')
+print('PASS: required project definition, agent instructions, reusable templates, license, WF-013 tooling, governance and release-readiness documents present.')
 print('NOTE: This does not prove external adapters, autonomous orchestration, or end-to-end software delivery.')

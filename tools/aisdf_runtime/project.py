@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """AISDF project definition and planning helper; read-only against application source."""
 from __future__ import annotations
-import argparse, hashlib, json, os, subprocess, sys
+import argparse, hashlib, json, os, subprocess, sys, re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -26,7 +26,8 @@ def init(a):
     if not p.is_dir(): raise SystemExit(f'Project directory does not exist: {p}')
     project=p/'PROJECT.md'
     content=TEMPLATE.read_text(encoding='utf-8').replace('PROJECT-REPLACE',a.project_id or p.name.upper().replace(' ','-'))
-    if a.name: content=content.replace('Project/project name:',f'Project/project name: {a.name}')
+    if a.name: content=content.replace('Project name:** `REPLACE-WITH-PROJECT-NAME`',f'Project name:** `{a.name}`')
+    if a.project_type: content=content.replace('Project type:** `UNKNOWN`',f'Project type:** `{a.project_type.upper()}`')
     write_new(project,content)
     aisdf=p/'.aisdf'
     for d in ('assessment','findings','plans','prompts','reports','context'): (aisdf/d).mkdir(parents=True,exist_ok=True)
@@ -34,9 +35,9 @@ def init(a):
     mp=aisdf/'project-manifest.json'
     if not mp.exists(): mp.write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
     else: print(f'Preserved existing {mp}')
-    if a.add_agents and not (p/'AGENTS.md').exists(): write_new(p/'AGENTS.md',AGENT_TEMPLATE.read_text(encoding='utf-8'))
+    if not a.no_agents and not (p/'AGENTS.md').exists(): write_new(p/'AGENTS.md',AGENT_TEMPLATE.read_text(encoding='utf-8'))
     elif (p/'AGENTS.md').exists(): print(f'Preserved existing {p/"AGENTS.md"}; inspect and merge template manually.')
-    print('Created AISDF project workspace. No application source files were changed.')
+    print('Created AISDF project workspace with PROJECT.md and AGENTS.md (unless --no-agents). No application source files were changed.')
 
 def inventory(p):
     files=[]
@@ -66,6 +67,67 @@ def assess(a):
     lines += [f'- `{r}`' for r in instr] or ['- NONE FOUND']
     lines += ['', '## Semantic assessment — agent/reviewer must complete', '- Problem statement accurately reflects current users and pain: NOT_ASSESSED', '- Feature/function inventory mapped to code and tests: NOT_ASSESSED', '- Business rules and role/permission behavior: NOT_ASSESSED', '- Architecture/data/API/integration map: NOT_ASSESSED', '- NFRs/security/privacy/accessibility/performance: NOT_ASSESSED', '- Missing/partial/conflicting features: NOT_ASSESSED', '- Build/test/deploy commands verified: NOT_ASSESSED', '- Risks, assumptions, unknowns, and dependencies: NOT_ASSESSED', '', '## Required next actions', '1. Read PROJECT.md and all applicable agent instruction files.', '2. Inspect source, docs, manifests, tests, migrations, CI and deployment configuration.', '3. Build an evidence-linked feature matrix with statuses defined in WF-013.', '4. Update PROJECT.md as a proposed draft; preserve user-approved content.', '5. Create a plan and stop for explicit approval before source changes.', '', '## Limitations', '- File presence does not prove a feature works.', '- No source files were modified.', '- No build, test, security scan, deployment, or runtime behavior was executed by this command.']
     out=p/'.aisdf'/'assessment'/'EXISTING-PROJECT-ASSESSMENT.md'; out.parent.mkdir(parents=True,exist_ok=True); out.write_text('\n'.join(lines)+'\n',encoding='utf-8'); print(out)
+
+
+REQUIRED_PROJECT_HEADINGS = [
+    "## 1. Executive summary", "## 2. Full problem statement", "## 3. Purpose, vision, objectives, and outcomes",
+    "## 4. Users, actors, and stakeholders", "## 5. Existing repository and system baseline",
+    "## 6. Complete feature and function inventory", "## 7. User journeys and operational workflows",
+    "## 8. Functional requirements", "## 9. Non-functional requirements", "## 10. Domain rules and application logic",
+    "## 11. Data model and information lifecycle", "## 12. Architecture and technical design",
+    "## 13. Technology stack and dependencies", "## 14. API, integration, and interface contracts",
+    "## 15. UX, UI, accessibility, and documentation", "## 16. Security, privacy, safety, and abuse cases",
+    "## 17. Scope and constraints", "## 18. Acceptance criteria and verification matrix",
+    "## 19. Missing functionality, defects, conflicts, and open questions", "## 20. Risks and mitigations",
+    "## 21. Build, test, release, operations, and support", "## 22. Project-specific agent rules and permissions",
+    "## 23. Decisions and approval gates", "## 24. Implementation plan and traceability", "## 25. Change history"
+]
+
+def check_project(a):
+    p=Path(a.project).resolve()
+    if not p.is_dir(): raise SystemExit(f'Project directory does not exist: {p}')
+    project=p/'PROJECT.md'; agent=p/'AGENTS.md'
+    errors=[]; warnings=[]; report=[]
+    if not project.is_file(): errors.append('PROJECT.md is missing at repository root.')
+    if not agent.is_file(): errors.append('AGENTS.md is missing at repository root.')
+    txt=project.read_text(encoding='utf-8') if project.is_file() else ''
+    atxt=agent.read_text(encoding='utf-8') if agent.is_file() else ''
+    missing=[h for h in REQUIRED_PROJECT_HEADINGS if h not in txt]
+    if missing: errors.extend('PROJECT.md missing required section: '+h for h in missing)
+    if txt:
+        for label, pattern in [('Project ID',r'Project ID:\**\s*`([^`]+)`'),('Project name',r'Project name:\**\s*`([^`]+)`'),('Project type',r'Project type:\**\s*`([^`]+)`')]:
+            m=re.search(pattern,txt)
+            if not m or m.group(1).startswith('REPLACE') or m.group(1) in ('PROJECT-REPLACE','UNKNOWN'):
+                warnings.append(f'PROJECT.md metadata needs completion: {label}')
+        if 'DRAFT — NOT APPROVED' in txt or 'Status: DRAFT' in txt: warnings.append('PROJECT.md is still a draft; human approval is pending.')
+        placeholders=len(re.findall(r'\b(?:TBD|UNKNOWN|REPLACE-WITH-[A-Z-]+|PROJECT-REPLACE)\b',txt,re.I))
+        if placeholders: warnings.append(f'PROJECT.md contains {placeholders} unresolved TBD/UNKNOWN/replacement markers.')
+        id_patterns = [('FR feature',r'^\|\s*(FR-\d{3})\s*\|'),('FRQ requirement',r'^\|\s*(FRQ-\d{3})\s*\|'),('AC acceptance',r'^\|\s*(AC-\d{3})\s*\|'),('NFR',r'^\|\s*(NFR-\d{3})\s*\|')]
+        for label, pattern in id_patterns:
+            found=re.findall(pattern,txt,re.M)
+            if len(found)!=len(set(found)): errors.append(f'PROJECT.md contains duplicate {label} IDs.')
+        for required_text in ('Feature ID','Evidence (file, test, run)','AC ID','Verification method','Approval record','Exact files allowed'):
+            if required_text not in txt: errors.append(f'PROJECT.md is missing required inventory/traceability field: {required_text}')
+        for token in ('IMPLEMENTED_VERIFIED','IMPLEMENTED_UNVERIFIED','PARTIAL','DOCUMENTED_ONLY','PLANNED','MISSING','BROKEN','UNKNOWN','NOT_APPLICABLE'):
+            if token not in txt: errors.append(f'PROJECT.md status vocabulary missing: {token}')
+        for md_link in re.findall(r'!?\[[^\]]*\]\(([^)]+)\)',txt):
+            target=md_link.split('#',1)[0]
+            if not target or re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:',target) or target.startswith('#'): continue
+            if not (project.parent/target).resolve().exists(): errors.append(f'Broken relative link in PROJECT.md: {target}')
+    required_agent_phrases=['Instruction precedence','Project truth and evidence','Session pre-flight','Scope and change control','Human approval boundaries','Security, privacy, and data handling','Testing and verification','Completion report contract','Stop conditions']
+    if atxt:
+        for phrase in required_agent_phrases:
+            if phrase not in atxt: errors.append(f'AGENTS.md missing required policy section: {phrase}')
+    if not errors: report.append('PASS: PROJECT.md structure, 25 required sections, status vocabulary, and AGENTS.md policy sections.')
+    else: report.append('FAIL: '+str(len(errors))+' structural/policy errors.')
+    report += ['WARN: '+w for w in warnings]
+    report += ['ERROR: '+e for e in errors]
+    print('\n'.join(report))
+    if a.json:
+        print(json.dumps({'valid':not errors,'warnings':warnings,'errors':errors,'project_file':str(project),'agent_file':str(agent)},indent=2))
+    if errors or (a.strict and warnings): raise SystemExit(1)
+    if warnings: print('INCOMPLETE: structure is valid, but project content still needs evidence-backed completion.')
+    else: print('PASS: no structural or completeness warnings detected. Semantic correctness still requires human/agent evidence review.')
 
 def plan_create(a):
     p=Path(a.project).resolve(); pid=a.id.upper(); out=p/'.aisdf'/'plans'/f'IMPLEMENTATION-PLAN-{pid}.md'
@@ -105,8 +167,9 @@ def prompt_create(a):
 
 def main():
     ap=argparse.ArgumentParser(description='AISDF project definition, assessment, planning and approved-prompt helper'); sp=ap.add_subparsers(dest='cmd',required=True)
-    x=sp.add_parser('init',help='create PROJECT.md and .aisdf workspace without overwriting existing files'); x.add_argument('--project',default='.'); x.add_argument('--name'); x.add_argument('--project-id'); x.add_argument('--add-agents',action='store_true'); x.set_defaults(fn=init)
+    x=sp.add_parser('init',help='create PROJECT.md, AGENTS.md and .aisdf workspace without overwriting existing files'); x.add_argument('--project',default='.'); x.add_argument('--name'); x.add_argument('--project-id'); x.add_argument('--type',dest='project_type',help='project type, e.g. OPEN_SOURCE, DEMO, LIBRARY, COLLEGE_PROJECT'); x.add_argument('--add-agents',action='store_true',help='legacy no-op; AGENTS.md is created by default'); x.add_argument('--no-agents',action='store_true',help='create PROJECT.md but do not generate AGENTS.md'); x.set_defaults(fn=init)
     x=sp.add_parser('assess',help='create deterministic existing-repository inventory; does not edit source'); x.add_argument('--project',default='.'); x.set_defaults(fn=assess)
+    x=sp.add_parser('check',help='check PROJECT.md completeness structure and AGENTS.md policy coverage'); x.add_argument('--project',default='.'); x.add_argument('--strict',action='store_true',help='return non-zero while any template placeholders or draft status remain'); x.add_argument('--json',action='store_true'); x.set_defaults(fn=check_project)
     x=sp.add_parser('plan-create',help='create a draft implementation plan'); x.add_argument('--project',default='.'); x.add_argument('--id',required=True); x.add_argument('--title',required=True); x.set_defaults(fn=plan_create)
     x=sp.add_parser('plan-hash',help='print the plan content digest to be signed in the approval block'); x.add_argument('--project',default='.'); x.add_argument('--plan',required=True); x.set_defaults(fn=plan_hash)
     x=sp.add_parser('prompt-create',help='generate execution prompt only from explicitly approved plan'); x.add_argument('--project',default='.'); x.add_argument('--plan',required=True); x.set_defaults(fn=prompt_create)

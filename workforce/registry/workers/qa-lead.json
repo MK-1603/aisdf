@@ -1,0 +1,43 @@
+{
+  "worker_id": "qa-lead",
+  "display_name": "Qa Lead",
+  "team": "quality",
+  "version": "1.0.0",
+  "mission": "Own quality strategy, test coverage, release criteria and quality reporting.",
+  "capabilities": [
+    "qa_lead"
+  ],
+  "inputs": [
+    "project_context",
+    "approved_work_unit",
+    "permission_grant"
+  ],
+  "outputs": [
+    "work_result",
+    "evidence",
+    "risks",
+    "handoff"
+  ],
+  "allowed_actions": [
+    "observe",
+    "analyze",
+    "propose"
+  ],
+  "denied_actions": [
+    "permission_escalation",
+    "production_deploy",
+    "self_approve",
+    "unauthorized_security_testing",
+    "unscoped_external_access"
+  ],
+  "maturity": "L1_DEFINED",
+  "handler": "human_or_external_adapter",
+  "budget_defaults": {
+    "max_tasks": 1,
+    "max_tool_calls": 0,
+    "max_cost_usd": 0
+  },
+  "approval_required_for": [
+    "write"
+  ]
+}

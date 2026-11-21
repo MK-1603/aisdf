@@ -13,3 +13,7 @@
 - [Provider adapters](../adapters/README.md)
 
 - [MK Framework — venture-to-software execution method](../01-METHODOLOGY/MK-FRAMEWORK/README.md)
+
+- [PROJECT.md and AGENTS.md lifecycle guide](project-lifecycle/PROJECT-AND-AGENT-FILES.md)
+- [CLI demo walkthrough with screenshots](demo/README.md)
+- [Assessment entry prompt](../prompts/PROJECT-ASSESSMENT-ENTRY-PROMPT.md)

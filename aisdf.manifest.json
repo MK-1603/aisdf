@@ -1,20 +1,27 @@
 {
   "name": "AISDF",
-  "version": "3.8.2",
-  "description": "AI Software Development Framework",
-  "repository_layout": "repository-root",
-  "python_minimum": "3.10",
-  "workflow_runtime": "tools/aisdf_runtime/aisdf.py",
-  "provider_adapters": [
-    "claude-code",
-    "codex",
-    "cursor",
-    "antigravity"
+  "version": "4.0.0",
+  "license": "MIT",
+  "python": ">=3.10",
+  "runtime": "local-deterministic-python-sqlite",
+  "worker_count": 72,
+  "teams": [
+    "product",
+    "ux-design",
+    "architecture",
+    "frontend",
+    "mobile",
+    "backend",
+    "data-database",
+    "ai-ml-agents",
+    "security",
+    "quality",
+    "platform-operations",
+    "specialized"
   ],
-  "license_status": "pending-maintainer-decision",
-  "host_certification": "not-performed",
-  "project_lifecycle_cli": "tools/aisdf_runtime/project.py",
-  "included_methodologies": [
-    "MK Framework"
-  ]
+  "engines": 56,
+  "workflows": 13,
+  "maturity": "framework-and-local-control-plane-foundation",
+  "provider_execution": "adapter-contract-only",
+  "sandbox": "external-integration-required"
 }

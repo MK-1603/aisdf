@@ -1,3 +1,3 @@
 # Examples
 
-Examples must be synthetic or appropriately sanitized. Each example should include source assumptions, expected output, validation result and limitations. No end-to-end reference application has yet been proven with this repository build.
+`tasks.example.json` demonstrates a three-task DAG. It is planning input only: no model or tool executes. Use it against a disposable test project to inspect dependency validation, role lookup, policy checks and ledger output.

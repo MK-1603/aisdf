@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aisdf.dev/schemas/worker-manifest.schema.json",
+  "title": "AISDF Worker Manifest",
+  "type": "object",
+  "required": [
+    "worker_id",
+    "display_name",
+    "team",
+    "version",
+    "mission",
+    "capabilities",
+    "inputs",
+    "outputs",
+    "allowed_actions",
+    "denied_actions",
+    "maturity",
+    "handler",
+    "budget_defaults",
+    "approval_required_for"
+  ],
+  "properties": {
+    "worker_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "team": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "mission": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "denied_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maturity": {
+      "enum": [
+        "L1_DEFINED",
+        "L2_EXECUTABLE",
+        "L3_VERIFIED",
+        "L4_OPERATIONAL"
+      ]
+    },
+    "handler": {
+      "type": "string"
+    },
+    "budget_defaults": {
+      "type": "object"
+    },
+    "approval_required_for": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "task_id": "DISC-001",
+    "title": "Inspect current project structure",
+    "worker_id": "business-analyst",
+    "action": "observe",
+    "depends_on": [],
+    "acceptance_criteria": [
+      "Inventory includes source, tests, docs and build configuration",
+      "Unknown or inaccessible areas are listed"
+    ],
+    "budget_usd": 0,
+    "estimated_cost_usd": 0
+  },
+  {
+    "task_id": "REQ-001",
+    "title": "Draft requirements and gaps",
+    "worker_id": "requirements-engineer",
+    "action": "analyze",
+    "depends_on": [
+      "DISC-001"
+    ],
+    "acceptance_criteria": [
+      "Requirements have stable IDs",
+      "Each finding cites repository evidence"
+    ],
+    "budget_usd": 0,
+    "estimated_cost_usd": 0
+  },
+  {
+    "task_id": "SEC-001",
+    "title": "Propose threat model",
+    "worker_id": "application-security-engineer",
+    "action": "propose",
+    "depends_on": [
+      "DISC-001"
+    ],
+    "acceptance_criteria": [
+      "Assets and trust boundaries are identified",
+      "Threats and mitigations are recorded"
+    ],
+    "budget_usd": 0,
+    "estimated_cost_usd": 0
+  }
+]

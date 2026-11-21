@@ -1,41 +1,14 @@
-# Quick Start
+# AISDF v4.0 Quick Start
 
-1. Clone/download this repository and read the root README.
-2. Choose a mode in `modes/`.
-3. Copy `templates/PROJECT-PROFILE.template.yaml` into the project workspace and fill known fields.
-4. Run the master prompt from `prompts/MASTER-ENTRY-PROMPT.md` in your selected AI tool.
-5. Provide the relevant project documents and repository context.
-6. Ask the tool to list facts, decisions, assumptions, unknowns, risks and required approvals before implementation.
-7. Select the workflow in `workflows/` and reference the relevant engine specs.
-8. Create work units from `schemas/work-unit.schema.json` and track checkpoints/handoffs.
-9. Execute only authorized actions. Capture command output, test reports, commits and review records.
-10. Close with `schemas/completion-report.schema.json`; do not claim deployment unless deployment evidence exists.
+1. Install Python 3.10 or newer.
+2. Extract the repository and open its root.
+3. Run `python tools/validate_repository.py`.
+4. Run `python -m unittest discover -s tests -v`.
+5. List workers: `python runtime/aisdf_runtime/workforce.py workers`.
+6. Initialize a project: `python runtime/aisdf_runtime/workforce.py init --project ../demo --name "Demo"`.
+7. Copy `examples/tasks.example.json` into the target project's `.aisdf/` folder or pass it directly to the planner.
+8. Plan tasks: `python runtime/aisdf_runtime/workforce.py plan --project ../demo --tasks examples/tasks.example.json`.
+9. Approve tasks by ID: `python runtime/aisdf_runtime/workforce.py approve --project ../demo --task-id DISC-001 --approver "Your Name"`.
+10. Inspect state: `python runtime/aisdf_runtime/workforce.py status --project ../demo`.
 
-AISDF does not execute these steps itself. The selected AI tool and authorized environment do.
-
-
-## Define and assess a real project (WF-013)
-
-From the AISDF repository, initialize the target project workspace (the helper refuses to overwrite existing files):
-
-```bash
-python tools/aisdf_runtime/project.py init --project ../my-project --name "My Project" --add-agents
-python tools/aisdf_runtime/project.py assess --project ../my-project
-python tools/aisdf_runtime/project.py plan-create --project ../my-project --id P001 --title "First approved improvement"
-```
-
-Use `prompts/PROJECT-ASSESSMENT-ENTRY-PROMPT.md` with ChatGPT, Claude, Codex, Cursor, or Antigravity while the agent is connected to the actual target repository. The assessment command creates a deterministic file inventory only; the connected AI agent must inspect source and tests to complete semantic feature mapping and missing-gap analysis.
-
-After filling the plan and exact file allowlist, compute its approval digest:
-
-```bash
-python tools/aisdf_runtime/project.py plan-hash --project ../my-project --plan IMPLEMENTATION-PLAN-P001.md
-```
-
-An authorized human must record `APPROVED`, approver, date, and the exact digest in the plan's approval block. Only then can the execution prompt be generated:
-
-```bash
-python tools/aisdf_runtime/project.py prompt-create --project ../my-project --plan IMPLEMENTATION-PLAN-P001.md
-```
-
-The runtime does not edit application source. The connected coding agent reads `PROJECT.md`, `AGENTS.md`, and the approved plan, implements only the allowlisted changes, and runs the planned verification.
+Planning and approval do not execute work. Use a human operator or a separately configured and secured adapter. See `runtime/adapters/WORKER-ADAPTER-CONTRACT.md`.

@@ -3,116 +3,183 @@
 # AISDF
 ### AI Software Development Framework
 
-**From problem discovery to production-ready software — with humans in control.**
+**Open-source, provider-independent software engineering workforce framework**
 
-<p align="center">
-  <img src="01-METHODOLOGY/MK-FRAMEWORK/assets/MK-FRAMEWORK-OVERVIEW.png" alt="MK Framework venture-to-software execution flow" width="520" />
-</p>
+*Discover → Define → Design → Assign → Build → Verify → Operate → Improve*
 
-[Getting Started](QUICK-START.md) · [Project Definition](PROJECT.md) · [MK Framework](01-METHODOLOGY/MK-FRAMEWORK/README.md) · [Documentation](docs/README.md) · [Workflows](workflows/) · [Runtime](docs/WORKFLOW-RUNTIME.md) · [Contributing](CONTRIBUTING.md)
+[Quick Start](QUICK-START.md) · [Architecture](docs/v4/ARCHITECTURE.md) · [Workforce](workforce/README.md) · [Role Catalogue](workforce/ROLE-CATALOGUE.md) · [Operating Guide](docs/v4/OPERATING-GUIDE.md) · [Runtime](runtime/README.md) · [Security](security-operations/README.md) · [Project Setup](docs/project-lifecycle/PROJECT-AND-AGENT-FILES.md) · [Contributing](CONTRIBUTING.md)
+
+**v4.0.0** · **Python 3.10+** · **MIT License**
 
 </div>
 
 ---
 
-## What is AISDF?
+## 1. What AISDF is
 
-AISDF is an open, tool-independent software engineering framework and repository. It organizes the methods, governance rules, engineering knowledge, workflows, prompts, schemas, templates, validation tools, and AI-tool adapters needed to build and improve software systematically.
+AISDF is an open-source framework and self-hostable reference runtime for coordinating software engineering work through specialist roles, explicit work contracts, policy-controlled permissions, dependency-aware plans, evidence records, human approvals, and independent verification.
 
-AISDF is **not** a hosted application, an LLM, an IDE, an autonomous agent platform, or a guarantee of production quality. Humans own product decisions, approvals, security acceptance, and releases. Compatible AI tools can assist within explicitly granted permissions.
+It brings together product discovery, requirements, UX, architecture, frontend, backend, mobile, databases, APIs, AI/ML, agent engineering, security, QA, DevOps, cloud, SRE, release, operations, documentation, and maintenance in one governed engineering lifecycle.
 
-## Why AISDF exists
+AISDF is **not** an LLM, a proprietary AI provider, an IDE, or a claim that every specialist is an autonomous expert. The core runtime manages workers, tasks, state transitions, policy checks, approvals, budgets, and audit records. Model/provider adapters are optional extensions. A worker is considered operational only at the maturity level demonstrated by tests and runtime evidence.
 
-AI-assisted development can produce code quickly while leaving gaps in requirements, architecture, security, maintainability, testing, and operational readiness. AISDF provides a repeatable lifecycle and evidence-based controls so teams can move quickly without treating generated output as verified software.
+## 2. What is included in v4.0.0
 
-## How it works
+| Component | Included | Actual maturity |
+|---|---|---|
+| 31 engineering domains and prior standards | Yes | Documented |
+| 56 engine specifications | Yes | Capability specifications |
+| WF-001–WF-013 | Yes | Workflow specifications |
+| MK Framework | Yes | Separate optional venture methodology |
+| PROJECT.md + AGENTS.md templates | Yes | Executable project setup/check tooling |
+| Specialist workforce catalogue | Yes | 72 role contracts and machine-readable manifests |
+| Worker/task contracts | Yes | JSON schemas and runtime validation |
+| Workforce registry | Yes | Executable local registry |
+| Dependency-aware task planner | Yes | Executable DAG validation/planning |
+| Permission policy | Yes | Executable policy checks for registered task actions |
+| Human approval gates | Yes | Executable approval state and audit records |
+| Budget controls | Yes | Task-level budget checks in the local runtime |
+| SQLite execution ledger | Yes | Executable local persistence and audit trail |
+| Provider adapters | Interface contracts | No provider is bundled or certified by default |
+| Sandboxed code execution | Interface and policy requirements | External sandbox integration required; not claimed built-in |
+| Persistent autonomous AI workers | Not included as a default service | Requires an explicitly configured model/runtime adapter |
+| Security scanners | Tool contracts/catalogue | Install and certify tools separately |
+
+This table is intentional: documented, executable, integrated, and production-certified are different states.
+
+## 3. Why AISDF exists
+
+AI-assisted development can produce code without reliably preserving project truth, requirements, scope, ownership, security boundaries, or test evidence. AISDF makes those controls explicit. It treats specialist workers as accountable roles, not chat personas: every assignment has a contract, owner, allowed actions, dependencies, acceptance criteria, evidence, budget, and handoff.
+
+## 4. Core architecture
 
 ```mermaid
 flowchart TD
-  A[Problem or Existing Repository] --> B[Choose Operating Mode]
-  B --> C[Discover and Inspect]
-  C --> D[Requirements and Scope]
-  D --> E[Design and Architecture]
-  E --> F[Human Approval Gate]
-  F --> G[Implementation with Authorized Tools]
-  G --> H[Independent Verification]
-  H --> I[Security and Release Readiness]
-  I --> J[Human Release Decision]
-  J --> K[Operate, Learn, Maintain]
-  H -->|Failure or findings| D
+  H[Human project owner] --> C[Control plane / orchestrator]
+  C --> P[Project source of truth: PROJECT.md]
+  C --> R[Worker registry and capability routing]
+  C --> G[Policy, permissions and approval gates]
+  C --> D[Dependency-aware task graph]
+  D --> X[Execution adapter / worker handler]
+  X --> E[Artifacts, evidence and execution ledger]
+  E --> V[Independent verification]
+  V --> A[Human acceptance / release decision]
+  G --> X
 ```
 
-1. **Choose a mode:** problem discovery, new project, or existing-project X-Ray.
-2. **Load governance:** read the core principles and rulebook before acting.
-3. **Create evidence artifacts:** project profile, requirements, design, risk and decision records.
-4. **Pass approval gates:** do not implement or expand scope before required human approval.
-5. **Execute in the host tool:** use the appropriate adapter and least-privilege permissions.
-6. **Verify independently:** run tests, security checks, review changes, and record actual evidence.
-7. **Report truthfully:** distinguish proposed, implemented, tested, independently verified, and production-verified work.
+The local runtime is deterministic. It does not secretly call an LLM. To use model-powered workers, implement or install a provider adapter that conforms to `runtime/adapters/WORKER-ADAPTER-CONTRACT.md`, then explicitly configure credentials and permissions. The same worker contract can be executed by a human, a deterministic tool, or a configured model adapter.
 
-## Operating modes
+## 5. Complete lifecycle — step by step
 
-| Mode | Use it when | Primary outcome |
-|---|---|---|
-| Problem Discovery | The problem or opportunity is not validated | Evidence-backed problem and go/defer/stop decision |
-| New Project | Starting a new software product or capability | Approved requirements, design, implementation, and release evidence |
-| Existing Project X-Ray | Working with an existing repository | Codebase map, risk/gap assessment, and controlled improvement plan |
+1. **Discover the project:** initialize `PROJECT.md` and `AGENTS.md`; inspect the repository; record facts, assumptions, unknowns, and evidence.
+2. **Define requirements:** create stable feature/requirement IDs, user journeys, acceptance criteria, scope and exclusions.
+3. **Design the system:** assign product, UX, architecture, data, API, security and infrastructure work to the relevant specialists.
+4. **Approve the plan:** review dependencies, file scope, risks, budget and required permissions. Human approval is mandatory for controlled changes.
+5. **Create work units:** split the plan into small tasks with explicit inputs, outputs, dependencies and acceptance criteria.
+6. **Route work:** select workers by capability, project context, availability and policy—not by arbitrary agent count.
+7. **Execute:** invoke a configured handler/adapter or assign the work to a human. The core runtime records state; it does not claim unconfigured AI execution.
+8. **Review:** run functional, integration, security, performance, accessibility and independent reviews as applicable.
+9. **Release:** verify evidence, unresolved findings, rollback and approvals. Human release authority remains final.
+10. **Maintain:** update PROJECT.md, decisions, risks, memory and change history based on verified reality.
 
-## Repository map
+## 6. Workforce teams
 
-| Path | Responsibility |
-|---|---|
-| `00-GOVERNANCE/` | Rules, policies, approval and release controls |
-| `01-METHODOLOGY/`–`30-AGENT-RULES-AND-VERIFICATION/` | Engineering domains and technical standards; includes the optional [MK Framework](01-METHODOLOGY/MK-FRAMEWORK/README.md) venture-to-software method |
-| `engines/` | Capability specifications and contracts |
-| `modes/` | Operating-mode procedures |
-| `workflows/` | Ordered, repeatable workflows including WF-001–WF-013 |
-| `prompts/` | Entry prompts and role prompts |
-| `schemas/`, `templates/`, `registries/` | Structured contracts and reusable artifacts |
-| `tools/aisdf_runtime/` | Portable WF-007–WF-013 workflow helpers; project lifecycle CLI |
-| `tests/` | Repository validation and tests |
-| `adapters/` | Claude Code, Codex, Cursor, Antigravity integrations |
-| `docs/` | Documentation index, coverage catalogue, assessments |
-| `.github/workflows/` | Automated repository quality gate |
+AISDF ships role contracts for product/research, UX/design, architecture, frontend, mobile, backend, API/integration, database/data, AI/ML, agent engineering, security, QA, DevOps/cloud, SRE/observability, release/operations, documentation, accessibility, compliance, and independent assurance.
 
-## Project definition and agent instructions
+The complete catalogue is in [`workforce/teams/`](workforce/teams/). Workers are activated per project. A small demo does not need every role. A role definition is not proof of an autonomous implementation; see each manifest's `maturity` field.
 
-Every target project should maintain two complementary files: `PROJECT.md` describes the problem, users, functions/features, requirements, constraints, architecture, acceptance criteria, gaps and approvals; `AGENTS.md` tells coding agents how to work safely in that repository. AISDF includes a project template, assessment workflow, implementation-plan generator, and approval-gated execution-prompt generator. See [PROJECT.md and AGENTS.md guide](docs/project-lifecycle/PROJECT-AND-AGENT-FILES.md) and [WF-013](workflows/WF-013-PROJECT-DEFINITION-ASSESSMENT-AND-IMPLEMENTATION-PLANNING.md).
+## 7. Security operations
 
-## Quick start
+The security department is a first-class team covering security governance, threat modeling, secure architecture, application security, source review, dependency/supply-chain security, secrets, API security, cloud/container/IaC, IAM, privacy, AI/agent security, authorized penetration testing, incident response, remediation and independent retesting.
 
-**Read first:** [Quick Start](QUICK-START.md), [Mission and Scope](AISDF-MISSION-AND-SCOPE.md), [Core Principles](AISDF-CORE-PRINCIPLES.md), and [Rulebook](00-GOVERNANCE/AISDF-RULEBOOK.md).
+All offensive testing requires written authorization, target scope, time window, rate limits, and stop conditions. The runtime does not provide an OS sandbox. Never run untrusted code with host credentials. Use an external sandbox and least-privilege credentials for execution adapters.
 
-For the portable workflow runtime, see [WF-007–WF-012 Runtime Guide](docs/WORKFLOW-RUNTIME.md). For an existing project, use [WF-013](workflows/WF-013-PROJECT-DEFINITION-ASSESSMENT-AND-IMPLEMENTATION-PLANNING.md) and [Project Assessment Prompt](prompts/PROJECT-ASSESSMENT-ENTRY-PROMPT.md). For tool setup, see [Adapters](adapters/README.md). For the venture-to-software decision method, see the [MK Framework guide](01-METHODOLOGY/MK-FRAMEWORK/MK-FRAMEWORK.md) and its [visual overview](01-METHODOLOGY/MK-FRAMEWORK/assets/MK-FRAMEWORK-OVERVIEW.png).
+## 8. Quick start
 
-## Validation
+Requirements: Python 3.10+; no mandatory third-party runtime dependency.
 
 ```bash
-python -m pip install -r requirements-dev.txt
+# Validate the repository
 python tools/validate_repository.py
-python -m pytest -q
-python tools/aisdf_runtime/aisdf.py --help
+
+# Run tests
+python -m unittest discover -s tests -v
+
+# Initialize a project (run from this repository root)
+python tools/aisdf_runtime/workforce.py init --project ../my-project --name "My Project"
+
+# List specialist workers
+python tools/aisdf_runtime/workforce.py workers
+
+# Create a work plan from a JSON task file
+python runtime/aisdf_runtime/workforce.py plan --project ../my-project --tasks examples/tasks.example.json
+
+# Inspect task plan and policy decisions
+python tools/aisdf_runtime/workforce.py status --project ../my-project
 ```
 
-## Current capability and maturity
+Detailed steps: [`QUICK-START.md`](QUICK-START.md), [`runtime/README.md`](runtime/README.md), and [`docs/v4/GETTING-STARTED.md`](docs/v4/GETTING-STARTED.md).
 
-- Governance, engineering domains, engine contracts, workflows, templates, and prompts are documented assets.
-- WF-007–WF-013 have standard-library CLI helpers for creating and validating workflow artifacts.
-- The CLI does not invoke LLMs, spawn isolated agents, modify application source code, or approve changes.
-- Provider adapters are packaged instructions/configuration; live compatibility and certification must be tested in each host version.
-- The reference project is a specification/validation fixture, not a completed production application.
-- The project license decision remains pending. Do not assume a license has been granted.
+## 9. Repository map
 
-See [Implementation Status](IMPLEMENTATION-STATUS.md) and [Release Readiness](RELEASE-READINESS.md).
+```text
+AISDF/
+├── README.md, PROJECT.md, AGENTS.md, LICENSE, VERSION
+├── 00-GOVERNANCE/                 # Global rules, evidence and approvals
+├── 01-METHODOLOGY/               # MK Framework (separate methodology)
+├── 02-...-30-.../                # 31 engineering domains
+├── engines/                      # 56 capability specifications
+├── workflows/                    # WF-001 through WF-013
+├── workforce/                    # Teams, role contracts, manifests, schemas
+├── runtime/                      # Control plane, task graph, policy, ledger
+├── security-operations/           # Security program and workflows
+├── adapters/                     # Host/provider adapter contracts
+├── tools/                        # CLI, validators and utility tooling
+├── schemas/                      # Shared JSON schemas
+├── templates/                    # Project, agent, task and report templates
+├── examples/                     # Runnable examples and sample projects
+├── tests/                        # Unit, integration and policy tests
+└── .github/workflows/            # CI validation
+```
 
-## Contributing
+## 10. See the v4.0 workforce runtime working
 
-Start with [CONTRIBUTING.md](CONTRIBUTING.md), [Code of Conduct](CODE_OF_CONDUCT.md), and the governance policies. Keep changes scoped, update tests and documentation, and never report checks that were not actually run.
+These screenshots are generated from actual local CLI executions against a disposable synthetic project. They demonstrate registry discovery, project initialization, task planning, human approval recording, and status/audit inspection. They do not depict an autonomous model executing code.
 
-## Security
+### 1. Specialist worker registry
+![Worker registry](docs/demo/v4/01-worker-registry.png)
 
-Do not commit secrets, credentials, private keys, or sensitive user data. See [SECURITY.md](SECURITY.md) for reporting guidance and current disclosure limitations.
+### 2. Initialize a project
+![Project initialization](docs/demo/v4/02-project-initialization.png)
 
----
+### 3. Create a dependency-aware task plan
+![Task planning](docs/demo/v4/03-task-planning.png)
 
-**Version:** 3.8.1 · **Framework maturity:** documented framework + limited executable workflow tooling · **License:** pending maintainer decision
+### 4. Record human approval
+![Human approval](docs/demo/v4/04-human-approval.png)
+
+### 5. Inspect task state and audit events
+![Workforce status](docs/demo/v4/05-workforce-status.png)
+
+**Demo boundary:** planning and approval are executable. Actual task execution requires a separately configured adapter or a human operator.
+
+## 11. MK Framework is separate
+
+MK Framework is an optional venture/opportunity methodology: problem/crowd validation, proven-model analysis, founder-market fit, inversion, premortem, kill criteria, timing, offer, product execution, feedback, reinvestment, moat defense and systemization. AISDF is the software engineering workforce. They connect at product/software execution, but neither is hidden inside the other. See [`01-METHODOLOGY/MK-FRAMEWORK/README.md`](01-METHODOLOGY/MK-FRAMEWORK/README.md).
+
+## 12. Open-source principles
+
+- Self-hostable core; no mandatory vendor account.
+- Provider-neutral worker contracts and adapter interfaces.
+- Transparent permissions and auditable task state.
+- Reproducible tests and public issue tracking.
+- Human control over destructive, external, security-sensitive and release actions.
+- No fabricated execution, security certification, benchmark result or autonomy claim.
+
+## 13. Maturity and non-goals
+
+v4.0.0 provides an executable local control-plane foundation: registry loading, task DAG validation, task state, policy checks, human approval records, budget checks and SQLite audit persistence. It does not ship a cloud-distributed scheduler, browser/computer operator, production-grade multi-tenant server, built-in LLM, universal tool execution, OS sandbox, or certified scanner suite. These are extension points with explicit contracts and acceptance requirements, not silently implied capabilities.
+
+## 14. Contributing and governance
+
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md), [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md), [`GOVERNANCE.md`](GOVERNANCE.md), and [`SECURITY.md`](SECURITY.md). All changes require tests, documentation, security consideration, and truthful maturity labels. See [`CHANGELOG.md`](CHANGELOG.md) for release history.

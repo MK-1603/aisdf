@@ -1,0 +1,101 @@
+{
+  "version": "1.0.0",
+  "teams": {
+    "product": [
+      "product-manager",
+      "business-analyst",
+      "requirements-engineer",
+      "product-analyst",
+      "technical-writer"
+    ],
+    "ux-design": [
+      "ux-researcher",
+      "ux-designer",
+      "ui-designer",
+      "design-systems-engineer",
+      "accessibility-specialist"
+    ],
+    "architecture": [
+      "principal-architect",
+      "solution-architect",
+      "frontend-architect",
+      "backend-architect",
+      "database-architect",
+      "api-architect",
+      "integration-architect"
+    ],
+    "frontend": [
+      "frontend-engineer",
+      "web-performance-engineer",
+      "frontend-test-engineer"
+    ],
+    "mobile": [
+      "mobile-engineer",
+      "android-engineer",
+      "ios-engineer",
+      "cross-platform-engineer"
+    ],
+    "backend": [
+      "backend-engineer",
+      "api-engineer",
+      "distributed-systems-engineer",
+      "integration-engineer"
+    ],
+    "data-database": [
+      "database-engineer",
+      "data-engineer",
+      "data-architect",
+      "analytics-engineer"
+    ],
+    "ai-ml-agents": [
+      "ai-ml-engineer",
+      "rag-engineer",
+      "agent-engineer",
+      "model-evaluation-engineer",
+      "mlops-engineer"
+    ],
+    "security": [
+      "security-lead",
+      "application-security-engineer",
+      "security-code-reviewer",
+      "penetration-tester",
+      "cloud-security-engineer",
+      "iam-security-engineer",
+      "devsecops-engineer",
+      "supply-chain-security-engineer",
+      "ai-security-engineer",
+      "privacy-engineer",
+      "incident-response-engineer",
+      "independent-security-auditor"
+    ],
+    "quality": [
+      "qa-lead",
+      "functional-test-engineer",
+      "automation-test-engineer",
+      "integration-test-engineer",
+      "performance-test-engineer",
+      "reliability-test-engineer",
+      "independent-code-reviewer"
+    ],
+    "platform-operations": [
+      "devops-engineer",
+      "cloud-engineer",
+      "site-reliability-engineer",
+      "observability-engineer",
+      "network-engineer",
+      "release-engineer",
+      "operations-engineer",
+      "support-engineer"
+    ],
+    "specialized": [
+      "embedded-systems-engineer",
+      "game-engineer",
+      "blockchain-engineer",
+      "robotics-engineer",
+      "geospatial-engineer",
+      "scientific-computing-engineer",
+      "compliance-engineer",
+      "technical-documentation-specialist"
+    ]
+  }
+}

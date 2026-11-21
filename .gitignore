@@ -12,3 +12,18 @@ node_modules/
 dist/
 build/
 coverage/
+.ruff_cache/
+.mypy_cache/
+.coverage
+*.egg-info/
+.aisdf/
+
+# AISDF local runtime state
+.aisdf/workforce.sqlite3
+.aisdf/workforce.sqlite3-shm
+.aisdf/workforce.sqlite3-wal
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
