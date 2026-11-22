@@ -7,9 +7,9 @@
 
 *Discover → Define → Design → Assign → Build → Verify → Operate → Improve*
 
-[Quick Start](QUICK-START.md) · [Architecture](docs/v4/ARCHITECTURE.md) · [Workforce](workforce/README.md) · [Role Catalogue](workforce/ROLE-CATALOGUE.md) · [Operating Guide](docs/v4/OPERATING-GUIDE.md) · [Runtime](runtime/README.md) · [Security](security-operations/README.md) · [Project Setup](docs/project-lifecycle/PROJECT-AND-AGENT-FILES.md) · [Contributing](CONTRIBUTING.md)
+[Quick Start](QUICK-START.md) · [Architecture](docs/framework/ARCHITECTURE.md) · [Workforce](workforce/README.md) · [Role Catalogue](workforce/ROLE-CATALOGUE.md) · [Operating Guide](docs/framework/OPERATING-GUIDE.md) · [Runtime](runtime/README.md) · [Security](security-operations/README.md) · [Project Setup](docs/project-lifecycle/PROJECT-AND-AGENT-FILES.md) · [Contributing](CONTRIBUTING.md)
 
-**v4.0.0** · **Python 3.10+** · **MIT License**
+**1.0.0** · **Python 3.10+** · **MIT License**
 
 </div>
 
@@ -23,29 +23,26 @@ It brings together product discovery, requirements, UX, architecture, frontend, 
 
 AISDF is **not** an LLM, a proprietary AI provider, an IDE, or a claim that every specialist is an autonomous expert. The core runtime manages workers, tasks, state transitions, policy checks, approvals, budgets, and audit records. Model/provider adapters are optional extensions. A worker is considered operational only at the maturity level demonstrated by tests and runtime evidence.
 
-## 2. What is included in v4.0.0
+## 2. What is included in 1.0.0
 
 | Component | Included | Actual maturity |
 |---|---|---|
-| 31 engineering domains and prior standards | Yes | Documented |
-| 56 engine specifications | Yes | Capability specifications |
-| WF-001–WF-013 | Yes | Workflow specifications |
+| 31 engineering domains, 56 engine specifications, WF-001-WF-013 | Yes | Specifications and workflows (instructions an AI follows) |
 | MK Framework | Yes | Separate optional venture methodology |
-| PROJECT.md + AGENTS.md templates | Yes | Executable project setup/check tooling |
-| Specialist workforce catalogue | Yes | 72 role contracts and machine-readable manifests |
-| Worker/task contracts | Yes | JSON schemas and runtime validation |
-| Workforce registry | Yes | Executable local registry |
-| Dependency-aware task planner | Yes | Executable DAG validation/planning |
-| Permission policy | Yes | Executable policy checks for registered task actions |
-| Human approval gates | Yes | Executable approval state and audit records |
-| Budget controls | Yes | Task-level budget checks in the local runtime |
-| SQLite execution ledger | Yes | Executable local persistence and audit trail |
-| Provider adapters | Interface contracts | No provider is bundled or certified by default |
-| Sandboxed code execution | Interface and policy requirements | External sandbox integration required; not claimed built-in |
-| Persistent autonomous AI workers | Not included as a default service | Requires an explicitly configured model/runtime adapter |
-| Security scanners | Tool contracts/catalogue | Install and certify tools separately |
+| 72 specialist role contracts + manifests | Yes | Contracts with per-role permission profiles; **not** 72 autonomous agents |
+| Local control-plane runtime (`python aisdf.py`) | Yes | **Implemented and tested** |
+| Human approver allow-list, digest-bound approvals, dependency gating, no-fake-success | Yes | **Implemented and tested** |
+| Hash-chained, tamper-evident audit ledger | Yes | **Implemented and tested** (tamper-evident, not tamper-proof) |
+| Governed local command executor | Yes | **Implemented and tested**; process limits only, **not a sandbox** |
+| Findings, release gate, independent-review package | Yes | **Implemented and tested** |
+| Memory vault template + checker (Obsidian-compatible) | Yes | Implemented and tested |
+| Pinned security-tool lock (12 tools, 2 CI actions) | Yes | Pins resolved; tools are not bundled or auto-run |
+| Multi-tool adapters (Claude Code, Cursor, Antigravity, Kimi, Qwen...) | Compatibility matrix | **Not yet conformance-tested**; see `adapters/COMPATIBILITY.md` |
+| Model/provider adapters | Interface contract | None bundled or certified |
+| OS sandbox | No | Use a container/VM |
+| Autonomous AI workers | No | Require a separately configured adapter |
 
-This table is intentional: documented, executable, integrated, and production-certified are different states.
+Documented, implemented, tested and certified are different states. Only the rows marked implemented and tested are covered by the automated test suite. How each rule is enforced: [`docs/framework/RULES-AND-ENFORCEMENT.md`](docs/framework/RULES-AND-ENFORCEMENT.md).
 
 ## 3. Why AISDF exists
 
@@ -99,26 +96,21 @@ All offensive testing requires written authorization, target scope, time window,
 Requirements: Python 3.10+; no mandatory third-party runtime dependency.
 
 ```bash
-# Validate the repository
-python tools/validate_repository.py
+python tools/validate_repository.py            # repository validator
+python -m unittest discover -s tests -v        # full test suite
 
-# Run tests
-python -m unittest discover -s tests -v
-
-# Initialize a project (run from this repository root)
-python tools/aisdf_runtime/workforce.py init --project ../my-project --name "My Project"
-
-# List specialist workers
-python tools/aisdf_runtime/workforce.py workers
-
-# Create a work plan from a JSON task file
-python runtime/aisdf_runtime/workforce.py plan --project ../my-project --tasks examples/tasks.example.json
-
-# Inspect task plan and policy decisions
-python tools/aisdf_runtime/workforce.py status --project ../my-project
+# In a real terminal (approvals need a human at a keyboard):
+python aisdf.py init --project ../my-project --name "My Project" --owner "Your Name"
+python aisdf.py plan --project ../my-project --tasks examples/tasks.example.json
+python aisdf.py approve --project ../my-project --task-id DISC-001 --approver "Your Name"
+python aisdf.py transition --project ../my-project --task-id DISC-001 --to READY
+python aisdf.py complete --project ../my-project --task-id DISC-001 --actor "Your Name" --result SUCCEEDED --evidence notes.md
+python aisdf.py status --project ../my-project
+python aisdf.py verify-ledger --project ../my-project
+python aisdf.py gate --project ../my-project     # release gate (BLOCKED lists every reason)
 ```
 
-Detailed steps: [`QUICK-START.md`](QUICK-START.md), [`runtime/README.md`](runtime/README.md), and [`docs/v4/GETTING-STARTED.md`](docs/v4/GETTING-STARTED.md).
+Details: [`QUICK-START.md`](QUICK-START.md), [`runtime/README.md`](runtime/README.md), [`docs/framework/GETTING-STARTED.md`](docs/framework/GETTING-STARTED.md). Using it from a specific AI tool: [`adapters/COMPATIBILITY.md`](adapters/COMPATIBILITY.md).
 
 ## 9. Repository map
 
@@ -142,26 +134,9 @@ AISDF/
 └── .github/workflows/            # CI validation
 ```
 
-## 10. See the v4.0 workforce runtime working
+## 10. See it working
 
-These screenshots are generated from actual local CLI executions against a disposable synthetic project. They demonstrate registry discovery, project initialization, task planning, human approval recording, and status/audit inspection. They do not depict an autonomous model executing code.
-
-### 1. Specialist worker registry
-![Worker registry](docs/demo/v4/01-worker-registry.png)
-
-### 2. Initialize a project
-![Project initialization](docs/demo/v4/02-project-initialization.png)
-
-### 3. Create a dependency-aware task plan
-![Task planning](docs/demo/v4/03-task-planning.png)
-
-### 4. Record human approval
-![Human approval](docs/demo/v4/04-human-approval.png)
-
-### 5. Inspect task state and audit events
-![Workforce status](docs/demo/v4/05-workforce-status.png)
-
-**Demo boundary:** planning and approval are executable. Actual task execution requires a separately configured adapter or a human operator.
+[`docs/demo/TRANSCRIPT.md`](docs/demo/TRANSCRIPT.md) is a real, unedited transcript of the runtime refusing an AI-named approver, blocking a task whose dependency has not finished, revoking an approval after a scope change, running an allow-listed command with redacted evidence, detecting a tampered ledger, and blocking a release. Regenerate it with `bash examples/demo.sh`. (Screenshots from the pre-hardening 4.0.0 runtime are kept in `docs/demo/legacy-v4-captures/` for history only.)
 
 ## 11. MK Framework is separate
 
@@ -178,7 +153,7 @@ MK Framework is an optional venture/opportunity methodology: problem/crowd valid
 
 ## 13. Maturity and non-goals
 
-v4.0.0 provides an executable local control-plane foundation: registry loading, task DAG validation, task state, policy checks, human approval records, budget checks and SQLite audit persistence. It does not ship a cloud-distributed scheduler, browser/computer operator, production-grade multi-tenant server, built-in LLM, universal tool execution, OS sandbox, or certified scanner suite. These are extension points with explicit contracts and acceptance requirements, not silently implied capabilities.
+1.0.0 is a governed local control plane: enforced approvals, dependency gating, evidence-backed completion, a tamper-evident ledger, a governed executor, findings, a release gate and an independent-review package. It does **not** ship a model adapter, a sandbox, scanner execution, a hosted service, or evidence that any AI tool follows the rules perfectly. A gate PASS means the recorded evidence satisfies the policy; it is not a proof that software is secure or correct, and the release decision stays human. "Best in the world" is not claimed; the measurable goals are in [`docs/framework/POSITIONING-AND-ROADMAP.md`](docs/framework/POSITIONING-AND-ROADMAP.md).
 
 ## 14. Contributing and governance
 

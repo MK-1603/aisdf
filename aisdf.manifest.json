@@ -1,6 +1,6 @@
 {
   "name": "AISDF",
-  "version": "4.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "python": ">=3.10",
   "runtime": "local-deterministic-python-sqlite",
@@ -21,7 +21,19 @@
   ],
   "engines": 56,
   "workflows": 13,
-  "maturity": "framework-and-local-control-plane-foundation",
+  "maturity": "governed-local-control-plane",
   "provider_execution": "adapter-contract-only",
-  "sandbox": "external-integration-required"
+  "sandbox": "not-included-process-limits-only",
+  "runtime_capabilities": [
+    "approver-allow-list",
+    "digest-bound-approvals",
+    "dependency-gating",
+    "hash-chained-ledger",
+    "governed-local-executor",
+    "findings-schema-validation",
+    "release-gate",
+    "review-package",
+    "memory-check"
+  ],
+  "security_tool_lock": "security/scanners.lock.json"
 }

@@ -35,3 +35,9 @@ Design and troubleshoot network, DNS, TLS and connectivity behavior.
 
 ## Acceptance
 The work unit's acceptance criteria must be satisfied and independently reviewable.
+
+## Permission profile (generated from manifest)
+- Allowed without approval: `observe`, `analyze`, `propose`
+- Each use requires a registered human approver: `write`, `execute`
+- Denied always: `permission_escalation`, `production_deploy`, `self_approve`, `unauthorized_security_testing`, `unscoped_external_access`
+- Source of truth: `workforce/registry/workers/network-engineer.json`; enforced by the runtime at `plan`.

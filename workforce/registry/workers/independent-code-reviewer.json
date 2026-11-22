@@ -37,7 +37,5 @@
     "max_tool_calls": 0,
     "max_cost_usd": 0
   },
-  "approval_required_for": [
-    "write"
-  ]
+  "approval_required_for": []
 }

@@ -1,44 +1,29 @@
-name: AISDF Validation
-
+name: validate
 on:
   push:
+    branches: [main]
   pull_request:
-  workflow_dispatch:
-
+permissions:
+  contents: read
 jobs:
-  validate:
+  test:
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12"]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          python-version: "3.11"
-          cache: "pip"
-          cache-dependency-path: requirements-dev.txt
-
-      - name: Install development dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements-dev.txt
-
-      - name: Verify repository root files
-        run: |
-          pwd
-          ls -la
-          test -f PROJECT.md
-          test -f README.md
-          test -f AGENTS.md
-          test -f LICENSE
-
-      - name: Validate repository
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install dev requirements (JSON Schema validation)
+        run: python -m pip install -r requirements-dev.txt
+      - name: Repository validator
         run: python tools/validate_repository.py
-
-      - name: Run automated tests
+      - name: Unit and regression tests
         run: python -m unittest discover -s tests -v
-
-      - name: Workforce CLI smoke test
-        run: python runtime/aisdf_runtime/workforce.py workers
+      - name: End-to-end demo must reproduce the documented behaviour
+        run: bash examples/demo.sh > /tmp/demo.txt && grep -q "GATE: BLOCKED" /tmp/demo.txt && grep -q "LEDGER: FAIL" /tmp/demo.txt

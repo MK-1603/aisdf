@@ -1,0 +1,18 @@
+{
+  "policy_id": "AISDF-RELEASE-GATE-1",
+  "description": "Default release gate. PASS means the recorded evidence satisfies this policy; it does not prove the software is secure or correct, and the release decision stays human.",
+  "require_all_tasks_terminal": true,
+  "require_interactive_approval": true,
+  "blocking_severities": ["BLOCKER", "CRITICAL", "HIGH"],
+  "blocking_statuses": ["OPEN", "RETEST_REQUIRED"],
+  "required_checks": [
+    {"id": "unit-tests", "require_source": "runtime_executed", "why": "Tests must be run by the runtime, not typed in as a claim."},
+    {"id": "secrets-scan", "require_pinned_ref": true, "suggested_tool": "TruffleHog"},
+    {"id": "dependency-scan", "require_pinned_ref": true, "suggested_tool": "Trivy (pin by commit SHA; never use floating tags)"},
+    {"id": "sast", "require_pinned_ref": true, "suggested_tool": "Semgrep"},
+    {"id": "skill-supply-chain", "require_pinned_ref": true, "allow_not_applicable": true, "suggested_tool": "NVIDIA SkillSpector (a pass is a floor, not proof)"},
+    {"id": "dast", "require_pinned_ref": true, "allow_not_applicable": true, "suggested_tool": "Nuclei / Strix on AUTHORIZED targets only"},
+    {"id": "llm-red-team", "require_pinned_ref": true, "allow_not_applicable": true, "suggested_tool": "Microsoft PyRIT, only when the product contains an LLM"},
+    {"id": "independent-review", "allow_not_applicable": false, "why": "A fresh, read-only reviewer (EGM Goldfish) must have reviewed the review-package."}
+  ]
+}

@@ -35,3 +35,9 @@ Measure and improve web performance against agreed budgets.
 
 ## Acceptance
 The work unit's acceptance criteria must be satisfied and independently reviewable.
+
+## Permission profile (generated from manifest)
+- Allowed without approval: `observe`, `analyze`, `propose`
+- Each use requires a registered human approver: `write`
+- Denied always: `permission_escalation`, `production_deploy`, `self_approve`, `unauthorized_security_testing`, `unscoped_external_access`
+- Source of truth: `workforce/registry/workers/web-performance-engineer.json`; enforced by the runtime at `plan`.

@@ -1,9 +1,9 @@
-# PROJECT.md — AISDF v4.0.0 Project Source of Truth
+# PROJECT.md — AISDF 1.0.0 Project Source of Truth
 
 - Project: AI Software Development Framework (AISDF)
-- Version: 4.0.0
+- Version: 1.0.0
 - Type: OPEN_SOURCE_FRAMEWORK_AND_LOCAL_REFERENCE_RUNTIME
-- Status: RELEASE_CANDIDATE — maintainer review required
+- Status: 1.0.0 — stable local control-plane interface; model adapters, sandboxing and scanner execution are out of scope and clearly labeled
 - License: MIT (subject to provenance and third-party license review)
 
 ## 1. Problem
@@ -28,14 +28,18 @@ AISDF is a framework, specification set, role/workforce catalogue and local cont
 - Security engineering workflows and tool adapter contracts.
 - Engineering standards, tests, templates and documentation.
 - Optional MK Framework venture methodology.
+- Enforced approvals (human allow-list, digest-bound), dependency gating, hash-chained audit ledger.
+- Governed local command execution with hashed evidence (not a sandbox).
+- Schema-validated review findings, release gate, independent-review package.
+- Memory vault template and checker; pinned security-tool lock.
 
 ## 6. Non-functional objectives
 Portable Python 3.10+ core; standard-library runtime; explicit filesystem boundaries; deterministic state transitions; auditable decisions; extensible adapters; testable contracts; no mandatory network calls; no secret values in manifests or logs.
 
 ## 7. Architecture
-See `docs/v4/ARCHITECTURE.md`, `docs/v4/WORKFORCE-MODEL.md`, `docs/v4/SECURITY-ARCHITECTURE.md`, and `runtime/README.md`.
+See `docs/framework/ARCHITECTURE.md`, `docs/framework/WORKFORCE-MODEL.md`, `docs/framework/SECURITY-ARCHITECTURE.md`, and `runtime/README.md`.
 
-## 8. Scope exclusions for v4.0.0
+## 8. Scope exclusions for 1.0.0
 No bundled model weights, no provider API credentials, no built-in autonomous model calls, no production OS sandbox, no guaranteed vulnerability detection, no automatic production deployment, and no claim of benchmark leadership.
 
 ## 9. Acceptance criteria
@@ -47,7 +51,10 @@ No bundled model weights, no provider API credentials, no built-in autonomous mo
 - Permission checks deny unauthorized actions by default.
 - Human approval is required for gated actions.
 - Budget checks reject over-budget tasks.
-- Audit ledger records task and approval events.
+- Audit ledger records task and approval events and is hash-chained; tampering is detected.
+- Only registered humans can approve; unregistered or AI-named approvers are rejected.
+- A task cannot be READY before its dependencies SUCCEEDED, and cannot succeed without evidence.
+- The release gate blocks on missing, failed or altered evidence and on open serious findings.
 - Documentation distinguishes specified, implemented, tested and certified maturity.
 
 ## 10. Risks

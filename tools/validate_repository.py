@@ -37,6 +37,21 @@ for md in ROOT.rglob('*.md'):
   if not target or re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:',target) or target.startswith('#'): continue
   resolved=(md.parent/target).resolve()
   if not resolved.exists(): errors.append(f'Broken Markdown link in {md.relative_to(ROOT)}: {target}')
+# --- 1.0 additions: single version everywhere, pinned scanners, required hardening artefacts
+ver=(ROOT/'VERSION').read_text().strip()
+if json.loads((ROOT/'aisdf.manifest.json').read_text())['version']!=ver: errors.append('aisdf.manifest.json version differs from VERSION')
+if f'Version: {ver}' not in (ROOT/'PROJECT.md').read_text(): errors.append('PROJECT.md version differs from VERSION')
+if ver not in (ROOT/'README.md').read_text(): errors.append('README.md does not mention the current VERSION')
+lock=ROOT/'security/scanners.lock.json'
+if not lock.is_file(): errors.append('missing security/scanners.lock.json')
+else:
+ for e in json.loads(lock.read_text())['entries']:
+  if not re.fullmatch(r'[0-9a-f]{40}',e.get('pinned_ref') or ''): errors.append(f"scanner lock entry {e.get('id')} is not pinned to a 40-char commit SHA")
+for rel in ('aisdf.py','docs/framework/RULES-AND-ENFORCEMENT.md','security/policies/release-gate.json','adapters/COMPATIBILITY.md','adapters/CONFORMANCE.md','memory/README.md','examples/demo.sh','docs/demo/TRANSCRIPT.md'):
+ if not (ROOT/rel).is_file(): errors.append(f'missing required file: {rel}')
+wf_txt=(ROOT/'.github/workflows/validate.yml').read_text()
+for ref in re.findall(r'uses:\s*(\S+)',wf_txt):
+ if not re.search(r'@[0-9a-f]{40}$',ref): errors.append(f'CI action not pinned by commit SHA: {ref}')
 try:
  import jsonschema
  for p in schemas: jsonschema.Draft202012Validator.check_schema(json.loads(p.read_text(encoding='utf-8')))
@@ -54,4 +69,5 @@ if errors:
 print(f'PASS: {len(engines)} uniquely numbered engine specifications with specific contracts.')
 print(f'PASS: {len(schemas)} JSON Schema files; {len(fixtures)} JSON fixtures parse.')
 print('PASS: required project definition, agent instructions, reusable templates, license, WF-013 tooling, governance and release-readiness documents present.')
+print(f'PASS: version {ver} consistent; scanner lock fully pinned; CI actions pinned by SHA; hardening artefacts present.')
 print('NOTE: This does not prove external adapters, autonomous orchestration, or end-to-end software delivery.')

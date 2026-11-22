@@ -38,8 +38,8 @@
     "max_cost_usd": 0
   },
   "approval_required_for": [
-    "deploy",
+    "write",
     "release",
-    "write"
+    "deploy"
   ]
 }

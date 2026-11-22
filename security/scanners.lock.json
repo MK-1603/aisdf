@@ -1,0 +1,167 @@
+{
+  "schema": "aisdf.scanners-lock/1",
+  "resolved_on": "2026-11-22",
+  "resolved_via": "git ls-remote + raw LICENSE file keyword detection",
+  "limitations": [
+    "Resolution proves a ref existed on that date, not that it is safe: read the project's security advisories before use.",
+    "Release signatures/checksums were NOT verified by this script; verify them when installing.",
+    "Trivy had a March 2026 supply-chain compromise (GHSA-69fq-xp46-6x23 / CVE-2026-33634): never use floating tags or actions for it; pin by SHA and review the advisory.",
+    "Licenses are keyword-detected from the LICENSE file, not legally verified; confirm before redistributing. Call GPL/AGPL tools as external programs; do not vendor them into this MIT repo."
+  ],
+  "entries": [
+    {
+      "id": "SEC-001",
+      "name": "Strix",
+      "repository": "https://github.com/usestrix/strix",
+      "head_sha": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "latest_stable_tag": "v1.7.1",
+      "latest_stable_tag_commit": "685bbc8138d35fc9fe378ac37ec0d9198b9c46a3",
+      "license_detected": "Apache-2.0 (detected from license file)",
+      "pinned_ref": "685bbc8138d35fc9fe378ac37ec0d9198b9c46a3",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "SEC-002",
+      "name": "Cloudflare Security Audit Skill",
+      "repository": "https://github.com/cloudflare/security-audit-skill",
+      "head_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "latest_stable_tag": null,
+      "latest_stable_tag_commit": null,
+      "license_detected": "MIT-style (detected from license file)",
+      "pinned_ref": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "pinned_ref_kind": "default_branch_head"
+    },
+    {
+      "id": "SEC-003",
+      "name": "Trivy",
+      "repository": "https://github.com/aquasecurity/trivy",
+      "head_sha": "edf9f5c13d27ba1f6b1bc747f2f41a383dc56dc9",
+      "latest_stable_tag": "v0.76.2",
+      "latest_stable_tag_commit": "3f6334d223b52188324af3b9923b4249cd206652",
+      "license_detected": "Apache-2.0 (detected from license file)",
+      "pinned_ref": "3f6334d223b52188324af3b9923b4249cd206652",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "SEC-004",
+      "name": "Nuclei",
+      "repository": "https://github.com/projectdiscovery/nuclei",
+      "head_sha": "e169d3bb5d6c39eeb3de02219fcb1267bfbac5fe",
+      "latest_stable_tag": "v3.11.1",
+      "latest_stable_tag_commit": "a8c88feb4a1c8e961b7902534ce3af97e9d524a4",
+      "license_detected": "MIT-style (detected from license file)",
+      "pinned_ref": "a8c88feb4a1c8e961b7902534ce3af97e9d524a4",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "SEC-005",
+      "name": "TruffleHog",
+      "repository": "https://github.com/trufflesecurity/trufflehog",
+      "head_sha": "4ef51f69ca6347aaa76a5e64a87eac9c0c909f71",
+      "latest_stable_tag": "v3.100.0",
+      "latest_stable_tag_commit": "d232362a64a09a9e7d58267b8f5acef00ae90e23",
+      "license_detected": "AGPL-3.0 (detected from license file)",
+      "pinned_ref": "d232362a64a09a9e7d58267b8f5acef00ae90e23",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "SEC-006",
+      "name": "NVIDIA SkillSpector",
+      "repository": "https://github.com/NVIDIA/SkillSpector",
+      "head_sha": "48e0f942ea1f5fdb7aa096a6f65a0adeda2ecc4e",
+      "latest_stable_tag": "v2.13.6",
+      "latest_stable_tag_commit": "e2674da339b0bddc6e565d059c0577c6d9cd25da",
+      "license_detected": "Apache-2.0 (detected from license file)",
+      "pinned_ref": "e2674da339b0bddc6e565d059c0577c6d9cd25da",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "SEC-007",
+      "name": "Semgrep",
+      "repository": "https://github.com/semgrep/semgrep",
+      "head_sha": "c4dbe9ee2fc6d0022ba02ef6b97c5954ed9549e3",
+      "latest_stable_tag": "v1.186.0",
+      "latest_stable_tag_commit": "a5844e7c2d9d04548f86048f525d467a00742656",
+      "license_detected": "LGPL (detected from license file)",
+      "pinned_ref": "a5844e7c2d9d04548f86048f525d467a00742656",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "SEC-008",
+      "name": "OpenAI Codex Security",
+      "repository": "https://github.com/openai/codex-security",
+      "head_sha": "dcb270ceb2eebb85285609ee5f5107c638d7191a",
+      "latest_stable_tag": null,
+      "latest_stable_tag_commit": null,
+      "license_detected": "Apache-2.0 (detected from license file)",
+      "pinned_ref": "dcb270ceb2eebb85285609ee5f5107c638d7191a",
+      "pinned_ref_kind": "default_branch_head"
+    },
+    {
+      "id": "SEC-009",
+      "name": "ClamAV",
+      "repository": "https://github.com/Cisco-Talos/clamav",
+      "head_sha": "fc11d725ccc7c9900ab1add88d790b4e7ae7debf",
+      "latest_stable_tag": "clamav-1.5.5",
+      "latest_stable_tag_commit": "fef3d620025bbf4342535157fe553bd37c5fa801",
+      "license_detected": "UNRESOLVED: read the repository license before use",
+      "pinned_ref": "fef3d620025bbf4342535157fe553bd37c5fa801",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "SEC-010",
+      "name": "Claude Code Security Review",
+      "repository": "https://github.com/anthropics/claude-code-security-review",
+      "head_sha": "0c6a49f1fa56a1d472575da86a94dbc1edb78eda",
+      "latest_stable_tag": null,
+      "latest_stable_tag_commit": null,
+      "license_detected": "MIT-style (detected from license file)",
+      "pinned_ref": "0c6a49f1fa56a1d472575da86a94dbc1edb78eda",
+      "pinned_ref_kind": "default_branch_head"
+    },
+    {
+      "id": "SEC-011",
+      "name": "BLA - Blind LLM Agents",
+      "repository": "https://github.com/qybaihe/bla",
+      "head_sha": "2b7a7c4f2ac69623542c3ba98e22695855e26449",
+      "latest_stable_tag": "v3.2.3",
+      "latest_stable_tag_commit": "889f7ea5caa35f065f07313f954934fba1e80b97",
+      "license_detected": "MIT-style (detected from license file)",
+      "pinned_ref": "889f7ea5caa35f065f07313f954934fba1e80b97",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "SEC-012",
+      "name": "Microsoft PyRIT",
+      "repository": "https://github.com/microsoft/PyRIT",
+      "head_sha": "eb926350f0a4df3122934f4cecff575f5ab6391a",
+      "latest_stable_tag": "v1.2.1",
+      "latest_stable_tag_commit": "c7b5789d74433da9e66569f27ee569f8622a22f6",
+      "license_detected": "MIT-style (detected from license file)",
+      "pinned_ref": "c7b5789d74433da9e66569f27ee569f8622a22f6",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "CI-001",
+      "name": "actions/checkout",
+      "repository": "https://github.com/actions/checkout",
+      "head_sha": "f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a",
+      "latest_stable_tag": "v7.0.1",
+      "latest_stable_tag_commit": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "license_detected": "MIT-style (detected from license file)",
+      "pinned_ref": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "pinned_ref_kind": "release_tag_commit"
+    },
+    {
+      "id": "CI-002",
+      "name": "actions/setup-python",
+      "repository": "https://github.com/actions/setup-python",
+      "head_sha": "5043d30437de73e5e7500b5c41676e0c30aa54f2",
+      "latest_stable_tag": "v7.1.0",
+      "latest_stable_tag_commit": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+      "license_detected": "MIT-style (detected from license file)",
+      "pinned_ref": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+      "pinned_ref_kind": "release_tag_commit"
+    }
+  ]
+}

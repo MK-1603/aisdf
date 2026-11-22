@@ -1,6 +1,6 @@
 # Complete AISDF Specialist Role Catalogue
 
-AISDF v4.0.0 defines **72 specialist worker contracts** across 12 teams.
+AISDF 1.0.0 defines **72 specialist worker contracts** across 12 teams.
 
 A role contract defines responsibilities. It does not mean the worker is an autonomous agent or production-certified. All current catalogue roles are `L1_DEFINED` until execution adapters and role-specific tests establish higher maturity.
 

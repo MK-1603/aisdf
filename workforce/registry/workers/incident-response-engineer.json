@@ -38,8 +38,8 @@
     "max_cost_usd": 0
   },
   "approval_required_for": [
+    "write",
     "execute",
-    "external_access",
-    "write"
+    "external_access"
   ]
 }
